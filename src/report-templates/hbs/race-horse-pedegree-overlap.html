@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stallion Search</title>
+    <link rel="stylesheet" href="{{this.pathReportTemplateStyles}}/css/main.css">
+    <!-- pedegree -->
+    <link rel="stylesheet" href="{{this.pathReportTemplateStyles}}/css/pedegree.css">
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="container pedegree-overlap-page">
+
+            <div class="common-header">
+                <h3>{{this.stakeWinnerHorseName}}</h3>
+            </div>
+            <!-- Pedegree -->
+           <div class="pedegree-block-wrapper">
+
+            <!-- Stallion -->
+              <div class="common-pedegree-block mare-pedegree">
+              
+                <div class="pedegree-box-wrapper">
+
+    
+
+                    <!-- pedegree-started -->
+                    <div class="pedegree-box">
+                       <div class="tree__line" data-num="1"></div>
+                       <div class="tree__line" data-num="2"></div>
+                       <div class="tree__line" data-num="3"></div>
+                       <div class="tree__line" data-num="4"></div>
+                       <div class="tree__line" data-num="5"></div>
+                       <div class="tree__line" data-num="6"></div>
+                       <div class="tree__line" data-num="7"></div>
+
+                       <!--<div class="tree__col" data-col="0">
+                       <div class="tree__cell">
+                           <div class="tree_cell_box white-box">
+                               <div class="tree_cell_box_left">
+                                   <div class="avatar_box">
+                                       <img src="{{this.pathReportTemplateStyles}}/images/horseprofile.svg" alt="">
+                                   </div>
+                               </div>
+                               <div class="tree_cell_box_right">
+                                   <h6>Tyranny</h6>
+                                   <p>G1 Pro</p>
+                               </div>
+                           </div>
+                       </div>
+                       </div>-->
+                       {{#each raceHorse}}
+                       {{#if @index}}
+                       {{#ifFifthGen @index}}
+                       <div class="tree__col" data-col="{{@index}}">
+                          {{#each this}}
+                          <div class="tree__cellgroup">
+                              {{#each this}}
+                                  <div class="tree__cell">
+                                      <div class="tree_cell_box">
+                                          <h6 class="{{this.colour}}">{{this.horseName}}</h6>
+                                          <!-- {{#if this.category}}
+                                              <p>{{this.category}}</p>
+                                          {{/if}} -->
+                                      </div>
+                                  </div>
+                              {{/each}}
+                          </div>
+                          {{/each}}
+                      </div>
+                       {{else}}
+                       <div class="tree__col" data-col="{{@index}}">
+                          {{#each this}}
+                          <div class="tree__cell">
+                              <div class="tree_cell_box">
+                                  <h6 class="{{this.colour}}">{{this.horseName}}</h6>
+                                  {{#lEq this.generation 2}}
+                                    {{#if this.category}}
+                                        <p>{{this.category}}</p>
+                                    {{/if}}
+                                {{/lEq}}
+                              </div>
+                          </div>
+                          {{/each}}
+                       </div>
+                       {{/ifFifthGen}}
+                       {{else}}
+                       <div class="tree__col" data-col="0">
+                          {{#each this}}
+                          <div class="tree__cell">
+                              <div class="tree_cell_box white-box">
+                                  <div class="tree_cell_box_left">
+                                     <div class="avatar_box">
+                                       <!-- {{#if this.image}}
+                                       <img src="{{this.image}}" alt="">
+                                       {{else}}
+                                       <img src="{{../../this.pathReportTemplateStyles}}/images/horseprofile.svg" alt="">
+                                       {{/if}} -->
+                                       {{#if ../../this.raceHorseProfileImageData}}
+                                          {{#if ../../this.raceHorseProfileImageData.profilePic}}
+                                              <img src="{{../../this.raceHorseProfileImageData.profilePic}}" alt="">
+                                          {{else}}
+                                              <img src="{{../../this.pathReportTemplateStyles}}/images/horseprofile.svg" alt="">
+                                          {{/if}}
+                                      {{else}}
+                                          <img src="{{../../this.pathReportTemplateStyles}}/images/horseprofile.svg" alt="">
+                                      {{/if}}
+                                     </div>
+                                  </div>
+                                  <div class="tree_cell_box_right">
+                                      <h6>{{this.horseName}}</h6>
+                                      {{#if this.category}}
+                                          <p>{{this.category}}</p>
+                                      {{/if}}
+                                  </div>
+                              </div>
+                          </div>
+                          {{/each}}
+                       </div>
+                       {{/if}}
+                       {{/each}}
+
+                   </div>
+               <!-- pedegree-End -->
+               </div>
+
+              </div>
+            <!-- End Stallion -->
+
+              <!-- Mare -->
+              <div class="common-pedegree-block mare-pedegree">
+                <div class="pedegree-box-wrapper">
+
+    
+
+                      <!-- pedegree-started -->
+                      <div class="pedegree-box">
+                         <div class="tree__line" data-num="1"></div>
+                         <div class="tree__line" data-num="2"></div>
+                         <div class="tree__line" data-num="3"></div>
+                         <div class="tree__line" data-num="4"></div>
+                         <div class="tree__line" data-num="5"></div>
+                         <div class="tree__line" data-num="6"></div>
+                         <div class="tree__line" data-num="7"></div>
+ 
+                         <!--<div class="tree__col" data-col="0">
+                         <div class="tree__cell">
+                             <div class="tree_cell_box white-box">
+                                 <div class="tree_cell_box_left">
+                                     <div class="avatar_box">
+                                         <img src="{{this.pathReportTemplateStyles}}/images/horseprofile.svg" alt="">
+                                     </div>
+                                 </div>
+                                 <div class="tree_cell_box_right">
+                                     <h6>Tyranny</h6>
+                                     <p>G1 Pro</p>
+                                 </div>
+                             </div>
+                         </div>
+                         </div>-->
+                         {{#each swPedigree}}
+                         {{#if @index}}
+                         {{#ifFifthGen @index}}
+                         <div class="tree__col" data-col="{{@index}}">
+                            {{#each this}}
+                            <div class="tree__cellgroup">
+                                {{#each this}}
+                                    <div class="tree__cell">
+                                        <div class="tree_cell_box">
+                                            <h6 class="{{this.colour}}">{{this.horseName}}</h6>
+                                            <!-- {{#if this.category}}
+                                                <p>{{this.category}}</p>
+                                            {{/if}} -->
+                                        </div>
+                                    </div>
+                                {{/each}}
+                            </div>
+                            {{/each}}
+                        </div>
+                         {{else}}
+                         <div class="tree__col" data-col="{{@index}}">
+                            {{#each this}}
+                            <div class="tree__cell">
+                                <div class="tree_cell_box">
+                                    <h6 class="{{this.colour}}">{{this.horseName}}</h6>
+                                    {{#lEq this.generation 2}}
+                                        {{#if this.category}}
+                                            <p>{{this.category}}</p>
+                                        {{/if}}
+                                    {{/lEq}}
+                                </div>
+                            </div>
+                            {{/each}}
+                         </div>
+                         {{/ifFifthGen}}
+                         {{else}}
+                         <div class="tree__col" data-col="0">
+                            {{#each this}}
+                            <div class="tree__cell">
+                                <div class="tree_cell_box white-box">
+                                    <div class="tree_cell_box_left">
+                                       <div class="avatar_box">
+                                         <!-- {{#if this.image}}
+                                         <img src="{{this.image}}" alt="">
+                                         {{else}}
+                                         <img src="{{../../this.pathReportTemplateStyles}}/images/horseprofile.svg" alt="">
+                                         {{/if}} -->
+                                         {{#if ../../this.swProfileImageData}}
+                                            {{#if ../../this.swProfileImageData.profilePic}}
+                                                <img src="{{../../this.swProfileImageData.profilePic}}" alt="">
+                                            {{else}}
+                                                <img src="{{../../this.pathReportTemplateStyles}}/images/horseprofile.svg" alt="">
+                                            {{/if}}
+                                        {{else}}
+                                            <img src="{{../../this.pathReportTemplateStyles}}/images/horseprofile.svg" alt="">
+                                        {{/if}}
+                                       </div>
+                                    </div>
+                                    <div class="tree_cell_box_right">
+                                        <h6>{{this.horseName}}</h6>
+                                        {{#if this.category}}
+                                            <p>{{this.category}}</p>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+                         </div>
+                         {{/if}}
+                         {{/each}}
+ 
+                     </div>
+                 <!-- pedegree-End -->
+                 </div>
+              </div>
+              <!-- End Mare -->
+           </div>
+
+           
+
+     
+         <!-- Stakes Wins -->
+         <div class="matched-mare-wrapper mt-80 stake-winner-comparison">
+            <div class="common-header">
+             <h3>Stakes Wins</h3>
+            </div>
+            <div class="matched-mare-body">
+                <div class="common-datatable stakes-comparison">
+                    <div class="datatable">
+                       <table>
+                           <thead>
+                               <tr>
+                                   <th>TYPE</th>
+                                   <th>RACE</th>
+                                   <th>YEAR</th>
+                                   <th>LOCATION</th>
+                                   <th>DISTANCE</th>
+                                   <th>TRACK</th>
+                                 </tr>
+                           </thead>
+                           <tbody>
+                            {{#each this.stakes}}
+                            <tr>
+                                <td>{{this.stake}}</td>
+                                <td>{{this.raceName}}</td>
+                                <td>{{this.raceYear}}</td>
+                                <td>{{this.countryName}}</td>
+                                <td>{{this.raceDistance}} {{this.distanceUnit}}</td>
+                               <td>{{#if this.trackName}}
+                                        {{this.trackName}}
+                                    {{else}}
+                                        N/A
+                                    {{/if}}
+                               </td>
+                              </tr>
+                            {{/each}}
+                        </tbody>
+                         </table>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

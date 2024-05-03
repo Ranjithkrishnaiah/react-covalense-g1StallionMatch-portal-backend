@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stallion Search</title>
+    <link rel="stylesheet" href="{{this.pathReportTemplateStyles}}/css/main.css">
+    <!-- pedegree -->
+    <link rel="stylesheet" href="{{this.pathReportTemplateStyles}}/css/pedegree.css">
+    <script src="{{this.pathReportTemplateStyles}}/js/chart.js"></script>
+    <style>
+        @media print {
+            @page {
+                size: A3 portrait;
+            }
+            .main-container {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- first-page -->
+    <div class="main-container first-page">
+        <div class="container stallion-search-page">
+
+            <div class="common-header">
+                <h3>Stallion Search</h3>
+            </div>
+
+            <!-- Perfect Match & 20/20 Match! -->
+
+            <div class="Match-box-wrapper">
+
+                <!-- Perfect Match -->
+                {{#ifEq this.stallionMatch "PM"}}
+                <div class="perfect-match-box mint-green">
+                    <div class="perfect-match-body">
+                        <h4><img src="{{this.pathReportTemplateStyles}}/images/fire.svg" alt=""> Perfect Match!</h4>
+                        <p>A Perfect Match occurs when there are 2 or more Graded Stakes Winners with common ancestors in every quarter of the pedigree of your mating. Of all Stallion Match searches, only 3 in 100 are a Perfect Match.</p>
+                        <a href="#" class="green-btn">Contact Shadai Stallion Station about this mating <img src="{{this.pathReportTemplateStyles}}/images/arrow-right.svg" alt=""></a>
+                    </div>
+                </div>
+                {{/ifEq}}
+
+                <!-- 20/20 Match! -->
+                {{#ifEq this.stallionMatch "2020M"}}
+                <div class="perfect-match-box heritage-green">
+                    <div class="perfect-match-body">
+                        <h4><img src="{{this.pathReportTemplateStyles}}/images/lightening-bolt.svg" alt=""> 20/20 Match!</h4>
+                        <p>A 20/20 Match occurs when a mating has two or more Graded Stakes Winners with more than 20 shared ancestors within 5 generations. This is called a SI (Simalarity Index) and indicates that the mating is proven. This occurs in only 45% of all searches.</p>
+                        <a href="#" class="green-btn">Contact Yarraman Park about this mating</a>
+                    </div>
+                </div>
+                {{/ifEq}}
+            </div>
+
+
+
+            <!-- Pedegree -->
+           <div class="pedegree-block-wrapper">
+
+            <!-- Stallion -->
+              <div class="common-pedegree-block stallion-pedegree">
+              
+                <div class="pedegree-box-wrapper">
+
+                   <div class="pedegree-header">
+                        <div class="pedegreeLogo">
+                            {{#if stallionFarmData.farmLogo}}
+                                <img src="{{stallionFarmData.farmLogo}}" alt="">
+                            {{else}}
+                                <img src="{{this.pathReportTemplateStyles}}/images/farm-placeholder-logo.svg" alt="">
+                            {{/if}}
+                        </div>
+                   </div>
+
+                     <!-- pedegree-started -->
+                     <div class="pedegree-box">
+                        <div class="tree__line" data-num="1"></div>
+                        <div class="tree__line" data-num="2"></div>
+                        <div class="tree__line" data-num="3"></div>
+                        <div class="tree__line" data-num="4"></div>
+                        <div class="tree__line" data-num="5"></div>
+                        <div class="tree__line" data-num="6"></div>
+                        <div class="tree__line" data-num="7"></div>
+
+                        <!--<div class="tree__col" data-col="0">
+                        <div class="tree__cell">
+                            <div class="tree_cell_box white-box">
+                                <div class="tree_cell_box_left">
+                                    <div class="avatar_box">
+                                        <img src="{{this.pathReportTemplateStyles}}/images/horseprofile.svg" alt="">
+                                    </div>
+                                </div>
+                                <div class="tree_cell_box_right">
+                                    <h6>La lova</h6>
+                                    <p>G1 Pro</p>
+                                </div>
+                            </div>
+                        </div>
+                        </div>-->
+                        {{#each stallionPedigree}}
+                        {{#if @index}}
+                        {{#ifFifthGen @index}}
+                        <div class="tree__col" data-col="{{@index}}">
+                           {{#each this}}
+                           <div class="tree__cellgroup">
+                               {{#each this}}
+                                   <div class="tree__cell">
+                                       <div class="tree_cell_box">
+                                           <h6 class="{{this.colour}}">{{this.horseName}}</h6>
+                                           <!-- {{#if this.category}}
+                                               <p>{{this.category}}</p>
+                                           {{/if}} -->
+                                       </div>
+                                   </div>
+                               {{/each}}
+                           </div>
+                           {{/each}}
+                       </div>
+                        {{else}}
+                        <div class="tree__col" data-col="{{@index}}">
+                           {{#each this}}
+                           <div class="tree__cell">
+                               <div class="tree_cell_box">
+                                   <h6 class="{{this.colour}}">{{this.horseName}}</h6>
+                                   {{#lEq this.generation 2}}
+                                        {{#if this.category}}
+                                            <p>{{this.category}}</p>
+                                        {{/if}}
+                                    {{/lEq}}
+                               </div>
+                           </div>
+                           {{/each}}
+                        </div>
+                        {{/ifFifthGen}}
+                        {{else}}
+                        <div class="tree__col" data-col="0">
+                           {{#each this}}
+                           <div class="tree__cell">
+                               <div class="tree_cell_box white-box">
+                                   <div class="tree_cell_box_left">
+                                      <div class="avatar_box">
+                                        {{#if ../../this.stallionProfileImageData}}
+                                            {{#if ../../this.stallionProfileImageData.profilePic}}
+                                            <img src="{{../../this.stallionProfileImageData.profilePic}}" alt="">
+                                            {{else}}
+                                            <img src="{{../../this.pathReportTemplateStyles}}/images/horseprofile.svg" alt="">
+                                            {{/if}}
+                                        {{else}}
+                                        <img src="{{../../this.pathReportTemplateStyles}}/images/horseprofile.svg" alt="">
+                                        {{/if}}
+                                      </div>
+                                   </div>
+                                   <div class="tree_cell_box_right">
+                                       <h6>{{this.horseName}}</h6>
+                                       {{#if this.category}}
+                                           <p>{{this.category}}</p>
+                                       {{/if}}
+                                   </div>
+                               </div>
+                           </div>
+                           {{/each}}
+                        </div>
+                        {{/if}}
+                        {{/each}}
+                <!-- pedegree-End -->
+                </div>
+
+              </div>
+              </div>
+            <!-- End Stallion -->
+
+              <!-- Mare -->
+              <div class="common-pedegree-block mare-pedegree">
+                <div class="pedegree-box-wrapper">
+
+                      <!-- pedegree-started -->
+                      <div class="pedegree-box">
+                         <div class="tree__line" data-num="1"></div>
+                         <div class="tree__line" data-num="2"></div>
+                         <div class="tree__line" data-num="3"></div>
+                         <div class="tree__line" data-num="4"></div>
+                         <div class="tree__line" data-num="5"></div>
+                         <div class="tree__line" data-num="6"></div>
+                         <div class="tree__line" data-num="7"></div>
+ 
+                         {{#each marePedigree}}
+                        {{#if @index}}
+                        {{#ifFifthGen @index}}
+                        <div class="tree__col" data-col="{{@index}}">
+                           {{#each this}}
+                           <div class="tree__cellgroup">
+                               {{#each this}}
+                                   <div class="tree__cell">
+                                       <div class="tree_cell_box">
+                                           <h6 class="{{this.colour}}">{{this.horseName}}</h6>
+                                           <!-- {{#if this.category}}
+                                               <p>{{this.category}}</p>
+                                           {{/if}} -->
+                                       </div>
+                                   </div>
+                               {{/each}}
+                           </div>
+                           {{/each}}
+                       </div>
+                        {{else}}
+                        <div class="tree__col" data-col="{{@index}}">
+                           {{#each this}}
+                           <div class="tree__cell">
+                               <div class="tree_cell_box">
+                                   <h6 class="{{this.colour}}">{{this.horseName}}</h6>
+                                   {{#lEq this.generation 2}}
+                                        {{#if this.category}}
+                                            <p>{{this.category}}</p>
+                                        {{/if}}
+                                    {{/lEq}}
+                               </div>
+                           </div>
+                           {{/each}}
+                        </div>
+                        {{/ifFifthGen}}
+                        {{else}}
+                        <div class="tree__col" data-col="0">
+                           {{#each this}}
+                           <div class="tree__cell">
+                               <div class="tree_cell_box white-box">
+                                   <div class="tree_cell_box_left">
+                                      <div class="avatar_box">
+                                        {{#if ../../this.mareProfileImageData}}
+                                            {{#if ../../this.mareProfileImageData.profilePic}}
+                                                <img src="{{../../this.mareProfileImageData.profilePic}}" alt="">
+                                            {{else}}
+                                                <img src="{{../../this.pathReportTemplateStyles}}/images/horseprofile.svg" alt="">
+                                            {{/if}}
+                                        {{else}}
+                                            <img src="{{../../this.pathReportTemplateStyles}}/images/horseprofile.svg" alt="">
+                                        {{/if}}
+                                        <!-- {{#if this.image}}
+                                        <img src="{{this.image}}" alt="">
+                                        {{else}}
+                                        <img src="{{../../this.pathReportTemplateStyles}}/images/horseprofile.svg" alt="">
+                                        {{/if}} -->
+                                      </div>
+                                   </div>
+                                   <div class="tree_cell_box_right">
+                                       <h6>{{this.horseName}}</h6>
+                                       {{#if this.category}}
+                                           <p>{{this.category}}</p>
+                                       {{/if}}
+                                   </div>
+                               </div>
+                           </div>
+                           {{/each}}
+                        </div>
+                        {{/if}}
+                        {{/each}}
+                 <!-- pedegree-End -->
+                 </div>
+              </div>
+              <!-- End Mare -->
+           </div>
+
+
+        </div>
+    </div>
+
+
+    <!-- second-page -->
+    <div class="main-container second-page" style="margin-top: 16px;">
+        <div class="container stallion-search-page">
+         <!-- Stakes Winners Comparison -->
+         <div class="matched-mare-wrapper mt-80 stake-winner-comparison">
+            <div class="common-header">
+             <h3>Stakes Winners Comparison</h3>
+            </div>
+            <div class="matched-mare-body">
+                <div class="common-datatable stakes-comparison">
+                    <div class="datatable">
+                       <table>
+                           <thead>
+                               <tr>
+                                   <th>Horse</th>
+                                   <th class="equal-width">G1</th>
+                                   <th class="equal-width">G2</th>
+                                   <th class="equal-width">G3</th>
+                                   <th class="equal-width">Exact Score</th>
+                                   <th class="equal-width">Similarity Score</th>
+                                 </tr>
+                           </thead>
+                           <tbody>
+                            {{#isArrayEmpty this.stakeWinners 0}}
+                                <tr><td colspan="6" style="text-align: center;">No Stakes Winners found!</td></tr>
+                            {{else}}
+                                {{#each this.stakeWinners}}
+                                <tr>
+                                    <td>{{this.Horsename}} 
+                                        {{#ifEq this.sex "M"}}
+                                        <span class="stakes-male">{{this.sex}}</span>
+                                        {{/ifEq}}
+                                        {{#ifEq this.sex "F"}}
+                                        <span class="stakes-female">{{this.sex}}</span>
+                                        {{/ifEq}}
+                                    </td>
+                                    <td>{{this.g1}}</td>
+                                    <td>{{this.g2}}</td>
+                                    <td>{{this.g3}}</td>
+                                    <td>{{this.ExactScore}}</td>
+                                    <td>{{this.CSI}}</td>
+                                </tr>
+                                {{/each}}
+                            {{/isArrayEmpty}}
+                           </tbody>
+                         </table>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <!-- End Stakes Winners Comparison -->
+
+        <!-- aptitude-profile-wrapper -->
+        <div class="aptitude-profile-wrapper">
+            <div class="common-header mt-56">
+                <h3>Aptitude Profile</h3>
+            </div>
+            <div class="aptitude-profile-body">
+                <!--<img src="{{this.pathReportTemplateStyles}}/images/aptitude-profile.svg" alt="">-->
+                <canvas id="GRAPH_BUBBLE_STALLIONSEARCH_APTITUDE" style="width:1038px; height: 385px;"></canvas>
+                <img id="GRAPH_BUBBLE_STALLIONSEARCH_APTITUDE_IMAGE" src=""/>
+                <input type="text" id="READY_GRAPH_APTITUDE" style="visibility: hidden; opacity: 0;">
+            </div>
+        </div>
+    
+        <!-- End aptitude-profile-wrapper -->
+
+
+     
+        </div>
+    </div>
+
+
+    <!-- third-page -->
+    <div class="main-container third-page" style="margin-top: 16px;">
+        <div class="container stallion-search-page">
+
+    
+
+        <!-- aptitude-profile-wrapper -->
+        <div class="age-distance-chart-wrapper">
+            <div class="age-distance-chart-body">                
+                <div class="age-distance-chart-left">
+                    <!--<div class="radar-chart"><img src="{{this.pathReportTemplateStyles}}/images/Radar-1.jpg" alt="stallion match"/></div>
+                    <div class="age"><img src="{{this.pathReportTemplateStyles}}/images/age.jpg" alt="stallion match"/></div>-->
+                    <div class="radar-chart">
+                        <canvas id="GRAPH_RADAR_STALLIONSEARCH_AGE" style="width:499px; height:426px;"></canvas>
+                        <img id="GRAPH_RADAR_STALLIONSEARCH_AGE_IMAGE" src=""/>
+                        <input type="text" id="READY_GRAPH_AGE" style="visibility: hidden; opacity: 0;">
+                    </div>
+                </div>
+                <div class="age-distance-chart-right">
+                    <!--<div class="radar-chart"><img src="{{this.pathReportTemplateStyles}}/images/Radar-2.jpg" alt="stallion match"/></div>
+                    <div class="age"><img src="{{this.pathReportTemplateStyles}}/images/distance.jpg" alt="stallion match"/></div>-->
+                    <div class="radar-chart">
+                        <canvas id="GRAPH_RADAR_STALLIONSEARCH_DISTANCE" style="width:499px; height:426px;"></canvas>
+                        <img id="GRAPH_RADAR_STALLIONSEARCH_DISTANCE_IMAGE" src=""/>
+                        <input type="text" id="READY_GRAPH_DISTANCE" style="visibility: hidden; opacity: 0;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End aptitude-profile-wrapper -->
+
+
+        <!-- Alternate Mating Suggestions -->
+        <div class="alternate-mating-wrapper mt-150">
+            <div class="common-header">
+                <h3>Alternate Mating Suggestions</h3>
+            </div>
+
+            <div class="alternate-mating-body">
+                {{#isArrayEmpty this.alternateMatingSuggestions 0}}
+                    <div style="display: flex; justify-content: center; height: 200px; align-items: center; text-align: center; width: 100%;">
+                        <p style="background: #F4F1EF; padding: 20px; border-radius: 6px;">No Alternate Mating Suggestions found!</p>
+                    </div>
+                {{else}}
+                    {{#each this.alternateMatingSuggestions}}
+                    <!-- item-1 -->
+                    <div class="alternate-mating-item">
+                        <div class="mating-item-head">
+                            <div class="mating-item-img">
+                                {{#if this.profilePic}}
+                                <img alt="{{this.horseName}}" src="{{this.profilePic}}" class="">
+                                {{else}}
+                                <img alt="{{this.horseName}}" src="{{../this.pathReportTemplateStyles}}/images/horseprofile.svg" class="">
+                                {{/if}}
+                            </div>
+                            <i class="mating-item-icon">
+                                {{#if this.isThunder}}
+                                <img src="{{../this.pathReportTemplateStyles}}/images/lightening-bolt.svg" alt="">
+                                {{/if}}
+                                {{#if this.isHot}}
+                                <img src="{{../this.pathReportTemplateStyles}}/images/fire.svg" alt="">
+                                {{/if}}
+                            </i>
+                        </div>
+                        <div class="mating-item-body">
+                            <h4>{{this.horseName}}</h4>
+                            <span class="year">{{this.yob}}</span>
+                            <p class="breed">{{this.farmName}}</p>
+                            <span class="year">{{this.currencyCode}} {{this.currencySymbol}}{{this.fee}} ({{this.feeYear}}))</span>
+                            <a href="#" class="outline-btn">Search</a>
+                        </div>
+                    </div>
+                    {{/each}}
+                {{/isArrayEmpty}}
+
+                <!--<div class="alternate-mating-item">
+                    <div class="mating-item-head">
+                        <div class="mating-item-img">
+                            <img alt="American Pharoah" src="{{this.pathReportTemplateStyles}}/images/horseprofile.svg" class="">
+                        </div>
+                        <i class="mating-item-icon">
+                            <img src="{{this.pathReportTemplateStyles}}/images/lightening-bolt.svg" alt="">
+                        </i>
+                    </div>
+                    <div class="mating-item-body">
+                        <h4>American Pharoah</h4>
+                        <span class="year">1995</span>
+                        <p class="breed">Coolmore Stud NSW</p>
+                        <span class="year">AUD $5,500 (2018))</span>
+                        <a href="#" class="outline-btn">Search</a>
+                    </div>
+                </div>
+
+
+                <div class="alternate-mating-item">
+                    <div class="mating-item-head">
+                        <div class="mating-item-img">
+                            <img alt="Pride Of Dubai" src="{{this.pathReportTemplateStyles}}/images/horseprofile.svg" class="">
+                        </div>
+                        <i class="mating-item-icon">
+                            <img src="{{this.pathReportTemplateStyles}}/images/fire.svg" alt="">
+                        </i>
+                    </div>
+                    <div class="mating-item-body">
+                        <h4>Pride Of Dubai</h4>
+                        <span class="year">1995</span>
+                        <p class="breed">Coolmore Stud NSW</p>
+                        <span class="year">AUD $5,500 (2018))</span>
+                        <a href="#" class="outline-btn">Search</a>
+                    </div>
+                </div>
+
+
+                <div class="alternate-mating-item">
+                    <div class="mating-item-head">
+                        <div class="mating-item-img">
+                            <img alt="American Pharoah " src="{{this.pathReportTemplateStyles}}/images/horseprofile.svg" class="">
+                        </div>
+                        <i class="mating-item-icon">
+                            <img src="{{this.pathReportTemplateStyles}}/images/fire.svg" alt="">
+                        </i>
+                    </div>
+                    <div class="mating-item-body">
+                        <h4>American Pharoah </h4>
+                        <span class="year">1995</span>
+                        <p class="breed">Coolmore Stud NSW</p>
+                        <span class="year">AUD $5,500 (2018))</span>
+                        <a href="#" class="outline-btn">Search</a>
+                    </div>
+                </div>-->
+
+            </div>
+
+        </div>
+        <!-- End Alternate Mating Suggestions -->
+
+        </div>
+    </div>
+    <script>
+        var GRAPH_BUBBLE_STALLIONSEARCH_APTITUDE_XVALUES;
+        var GRAPH_BUBBLE_STALLIONSEARCH_APTITUDE_YVALUES;
+        var GRAPH_BUBBLE_STALLIONSEARCH_APTITUDE_DATASETS;
+        var GRAPH_BUBBLE_STALLIONSEARCH_APTITUDE_DEFAULT_IMAGE;
+        // X-axis values that should have bold vertical lines
+        const selectedXValues = [0, 4, 8, 12, 16, 20];
+        var aptitudeChart = new Chart(document.getElementById('GRAPH_BUBBLE_STALLIONSEARCH_APTITUDE').getContext('2d'), {
+          type: "bubble",
+          data: {
+            datasets: GRAPH_BUBBLE_STALLIONSEARCH_APTITUDE_DATASETS
+          },
+          options: {
+            backgroundColor: "#f00",
+            plugins: {
+                legend: {
+                    display: false
+                },
+            },
+            scales: {
+                y: {
+                    type: 'category',
+                    labels: GRAPH_BUBBLE_STALLIONSEARCH_APTITUDE_YVALUES,
+                    grid: {
+                        borderColor: "#B0B6AF",
+                        //borderDashOffset: 2,
+                    },
+                    ticks: {
+                        font: {
+                            size: 12,
+                        }
+                    }
+                },
+                x: {
+                    type: 'category',
+                    labels: GRAPH_BUBBLE_STALLIONSEARCH_APTITUDE_XVALUES,
+                    grid: {
+                        borderColor: "#B0B6AF",
+                        color: (context) => (selectedXValues.includes(context.tick.value) ? 'rgba(176, 182, 175, 1)' : 'rgba(0, 0, 0, 0.1)'),
+                        lineWidth: (context) => (selectedXValues.includes(context.tick.value) ? 2 : 1),
+                        //borderDashOffset: 2,
+                    },
+                    ticks: {
+                        callback: function(val, index) {
+                            let label = this.getLabelForValue(val).split(' ');
+                            label.join('\n');
+                            return index % 4 === 0 ? label : '';
+                        },
+                        font: {
+                            size: 12,
+                        },
+                        maxRotation: 0,
+                        minRotation: 0,
+                    }
+                },
+            },
+            animation: {
+                onComplete: function () {
+                    if (aptitudeChart) {
+                        var aptitudeImage = aptitudeChart.toBase64Image();
+                        var aptitudeChartImage = document.getElementById('GRAPH_BUBBLE_STALLIONSEARCH_APTITUDE_IMAGE')
+                        aptitudeChartImage.src = aptitudeImage
+                    } else {
+                        var aptitudeChartImage = document.getElementById('GRAPH_BUBBLE_STALLIONSEARCH_APTITUDE_IMAGE')
+                        aptitudeChartImage.src = GRAPH_BUBBLE_STALLIONSEARCH_APTITUDE_DEFAULT_IMAGE
+                    }
+                    let aptitudeChartElement = document.getElementById("GRAPH_BUBBLE_STALLIONSEARCH_APTITUDE");
+                    if (aptitudeChartElement){
+                        aptitudeChartElement.remove()
+                    }
+                    const elements = document.getElementsByClassName("chartjs-size-monitor");
+                    while(elements.length > 0){
+                        elements[0].parentNode.removeChild(elements[0]);
+                    }
+                    document.getElementById('READY_GRAPH_APTITUDE').style.visibility = 'visible';
+                },
+            },
+          }
+        });
+
+        var GRAPH_RADAR_STALLIONSEARCH_AGE_XVALUES;
+        var GRAPH_RADAR_STALLIONSEARCH_AGE_DATASETS;
+        var datasets = GRAPH_RADAR_STALLIONSEARCH_AGE_DATASETS
+        const ageFemaleData = datasets[0]?.data
+        const ageMaleData = datasets[1]?.data
+        let ageHighestValue = 0
+        if (ageFemaleData.length > 0 && ageMaleData.length > 0) {
+            const ageFinalArray = ageFemaleData.concat(ageMaleData);
+            ageHighestValue = Math.max(...ageFinalArray);
+        }
+        var ageChart = new Chart(document.getElementById('GRAPH_RADAR_STALLIONSEARCH_AGE').getContext('2d'), {
+          type: "radar",
+          data: {
+            labels: GRAPH_RADAR_STALLIONSEARCH_AGE_XVALUES,
+            datasets: GRAPH_RADAR_STALLIONSEARCH_AGE_DATASETS
+          },
+          options: {
+            scales: {
+                r: {
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: (datasets[0]?.data?.length > 0 && ageHighestValue > 5)? Math.round((ageHighestValue/5)) : 1,
+                        textStrokeColor: 'rgb(54, 162, 235)',
+                        color: '#263238',
+                        backdropColor: 'white',
+                        backdropPadding: 5,
+                        boxshadow: '0px 4px 8px rgba(84, 110, 122, 0.24)',
+                        font: {
+                            size: 10,
+                            shape: 'square',
+                            color: '#263238',
+                        },
+                    }
+                }
+            },
+            animation: {
+                onComplete: function () {
+                    var image = ageChart.toBase64Image();
+                    var ageChartImage = document.getElementById('GRAPH_RADAR_STALLIONSEARCH_AGE_IMAGE')
+                    ageChartImage.src = image
+                    let ageChartElement = document.getElementById("GRAPH_RADAR_STALLIONSEARCH_AGE");
+                    if (ageChartElement){
+                        ageChartElement.remove()
+                    }
+                    const elements = document.getElementsByClassName("chartjs-size-monitor");
+                    while(elements.length > 0){
+                        elements[0].parentNode.removeChild(elements[0]);
+                    }
+                    document.getElementById('READY_GRAPH_AGE').style.visibility = 'visible';
+                },
+            },
+            elements: {
+                line: {
+                    borderWidth: 3
+                }
+            },
+            plugins: {
+            legend: {
+                position: 'bottom',
+                color: '#161716',
+                labels: {
+                    font: {
+                        size: 22,
+                        color: '#161716',
+                    }
+                }
+            },
+            title: {
+                display: true,
+                text: 'Age',
+                position:'bottom',
+                color:'#1D472E',
+                font: {
+                    size: 46,
+                    //family: 'Synthese-Book'
+                }
+            }
+            }
+          }
+        });
+    
+        var GRAPH_RADAR_STALLIONSEARCH_DISTANCE_XVALUES;
+        var GRAPH_RADAR_STALLIONSEARCH_DISTANCE_DATASETS;
+        var datasets = GRAPH_RADAR_STALLIONSEARCH_DISTANCE_DATASETS
+        const distanceFemaleData = datasets[0]?.data
+        const distanceMaleData = datasets[1]?.data
+        let distanceHighestValue = 0
+        if (distanceFemaleData.length > 0 && distanceMaleData.length > 0) {
+            const distanceFinalArray = distanceFemaleData.concat(distanceMaleData);
+            distanceHighestValue = Math.max(...distanceFinalArray);
+        }
+        var distanceChart = new Chart(document.getElementById('GRAPH_RADAR_STALLIONSEARCH_DISTANCE').getContext('2d'), {
+          type: "radar",
+          data: {
+            labels: GRAPH_RADAR_STALLIONSEARCH_DISTANCE_XVALUES,
+            datasets: GRAPH_RADAR_STALLIONSEARCH_DISTANCE_DATASETS
+          },
+          options: {
+            scales: {
+                r: {
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: (datasets[1]?.data?.length > 0 && distanceHighestValue > 5)? Math.round((distanceHighestValue/5)) : 1,
+                        textStrokeColor: 'rgb(54, 162, 235)',
+                        color: '#263238',
+                        backdropColor: 'white',
+                        backdropPadding: 5,
+                        boxshadow: '0px 4px 8px rgba(84, 110, 122, 0.24)',
+                        font: {
+                            size: 10,
+                            shape: 'square',
+                            color: '#263238',
+                        },
+                    }
+                }
+            },
+            animation: {
+                onComplete: function () {
+                    var distanceImage = distanceChart.toBase64Image();
+                    var distanceChartImage = document.getElementById('GRAPH_RADAR_STALLIONSEARCH_DISTANCE_IMAGE')
+                    distanceChartImage.src = distanceImage
+                    let distanceChartElement = document.getElementById("GRAPH_RADAR_STALLIONSEARCH_DISTANCE");
+                    if (distanceChartElement){
+                        distanceChartElement.remove()
+                    }
+                    const elements = document.getElementsByClassName("chartjs-size-monitor");
+                    while(elements.length > 0){
+                        elements[0].parentNode.removeChild(elements[0]);
+                    }
+                    document.getElementById('READY_GRAPH_DISTANCE').style.visibility = 'visible';
+                },
+            },
+            elements: {
+                line: {
+                    borderWidth: 3
+                }
+            },
+            plugins: {
+            legend: {
+              position: 'bottom',
+              color: '#161716',
+              labels: {
+                font: {
+                    size: 22,
+                    color: '#161716',
+                }
+              }
+            },
+            title: {
+                display: true,
+                text: 'Distance',
+                position:'bottom',
+                color:'#1D472E',
+                font: {
+                    size: 46,
+                    //family: 'Synthese-Book'
+                }
+            }
+        }
+          }
+        });
+    </script>
+</body>
+</html>

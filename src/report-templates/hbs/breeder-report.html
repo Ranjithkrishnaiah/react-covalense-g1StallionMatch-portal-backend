@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breeder Report</title>
+    <link rel="stylesheet" href="https://uat-s3-lambda-bucket.s3.ap-southeast-2.amazonaws.com/report-templates/portal/css/main.css">
+    
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="container breeder-report-page">
+            <!-- header -->
+            <div class="report-header-box">
+                <div class="report-header-box-left">
+                    <div class="br-img-box"><img src="https://uat-s3-lambda-bucket.s3.ap-southeast-2.amazonaws.com/report-templates/portal/images/farm-logo.png" alt=""></div>
+                    <div class="br-img-right">
+                        <h2>{{farmName}}</h2>
+                        <h6> {{state}}</h6>
+                        <h6>{{country}}</h6>
+                    </div>
+                </div>
+                <div class="report-header-box-right">
+                    <div class="report-header-box-right-button"></div>
+                    <div class="report-header-box-right-progress">
+                        <div class="progress-bar">
+                           <div class="progress-bar-header">
+                                <h6>Profile Rating: <b>{{profileRatingStatus}}</b></h6>
+                                <i class="icon-Info-circle"><img src="https://uat-s3-lambda-bucket.s3.ap-southeast-2.amazonaws.com/report-templates/portal/images/info-icon.svg" alt=""></i>
+                           </div>
+                           <div class="progress-bar-body">
+                            <span class="linearprogress-root" role="progressbar">
+                                {{{profileRating}}}
+                                <!-- <span class="linearprogress-bar" style="transform: translateX(-46%);"></span> -->
+                            </span>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           <!-- End header -->
+
+           <!-- Dotted Map -->
+           <div class="dotted-map-wrapper">
+               <div class="common-header">
+                <h3>Stallion Match Activity</h3>
+               </div>
+               <div class="map-body" >
+                <img src="{{mapDataImg}}" alt=""> 
+                 
+               </div>
+           </div>
+           <!-- End Dotted Map -->
+
+
+
+            <!-- Key Statistics -->
+            <div class="key-statistics-wrapper">
+                <div class="common-header">
+                 <h3>Key Statistics</h3>
+                </div>
+                <div class="key-statistics-body">
+                  <div class="key-statistics-box">
+
+                    <!-- first box-lines -->
+                    <div class="key-statistics-box-lines stallion-analytics-grid-row">
+
+                        <!-- col-1 -->
+                        {{#each this.keyStatistics}}
+                        <div class="key-statistics-block">
+                            <div class="key-statistics-block-top">
+                                <h6>{{this.KPI}} <img src="https://uat-s3-lambda-bucket.s3.ap-southeast-2.amazonaws.com/report-templates/portal/images/info-icon.svg" alt=""></h6>
+                            </div>
+                            <div class="key-statistics-block-bottom">
+                                
+                                {{#ifEq this.CurrentName "-"}}
+                                <h4>{{this.CurrentValue}}</h4>
+                            
+                                {{else}}
+                                <h4>{{this.CurrentName}}</h4>
+                                {{/ifEq}}
+                                {{#ifEq this.CurrentName "-"}}
+                                {{#gT this.CurrentValue this.PrevValue}}
+                                <span class="arrow-icon arrow-up-block">
+                                    <i class="icon-Arrow-up"><img src="https://uat-s3-lambda-bucket.s3.ap-southeast-2.amazonaws.com/report-templates/portal/images/arrow-up.svg" alt=""></i> 
+                                    {{this.PrevValue}}
+                                </span>
+                                {{/gT}}
+                                {{#lT this.CurrentValue this.PrevValue}}
+                                <span class="arrow-icon arrow-down-block">
+                                    <i class="icon-Arrow-down"><img src="https://uat-s3-lambda-bucket.s3.ap-southeast-2.amazonaws.com/report-templates/portal/images/arrow-down.svg" alt=""></i> 
+                                    {{this.PrevValue}}
+                                </span>
+                                {{/lT}}
+                                {{/ifEq}}
+                            </div>
+                        </div>
+                         <!-- end col-1 -->
+                         {{/each}}
+                         
+
+                                         </div>
+                    <!-- end fourth box-lines -->
+
+
+                  </div>
+                </div>
+            </div>
+            <!-- End Key Statistics -->
+
+
+            <!-- Matched Mares in Stallion Match -->
+           <div class="matched-mare-wrapper">
+            <div class="common-header">
+             <h3>Matched Mares in Stallion Match</h3>
+             <p>View mares searched with your farm’s stallions and contact registered Stallion Match breeders.</p>
+            </div>
+            <div class="matched-mare-body">
+                <div class="common-datatable stakes-comparison">
+                    
+                    <div class="datatable">
+                       <table>
+                           <thead>
+                               <tr>
+                                   <th>Breeder Name</th>
+                                   <th>Location</th>
+                                   <th>Total Searches</th>
+                                   <th>20/20 Matches</th>
+                                   <th>Most Common Mare</th>
+                                   <th></th>
+                                 </tr>
+                           </thead>
+                           <tbody>
+                           
+                            {{#each this.matchedMares}}
+                               <tr>
+                                   <td>{{this.BreederName}}</td>
+                                   <td>{{this.CountryName}}</td>
+                                   <td>{{this.TotalCountSearch}}</td>
+                                   <td>{{this.TotalCount2020Match}}</td>
+                                   <td>{{this.marename}}</td>
+                                   <td></td>
+                                 </tr>
+                                 {{/each}}
+                           </tbody>
+                         </table>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <!-- End Matched Mares in Stallion Match -->
+
+        </div>
+    </div>
+    
+</body>
+</html>

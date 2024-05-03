@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stallion X Breeding Stock Sale</title>
+    <link rel="stylesheet" href="{{this.pathReportTemplateStyles}}/css/reports.css">
+    <link rel="stylesheet" href="{{this.pathReportTemplateStyles}}/css/pedegree.css">
+    <script src="{{this.pathReportTemplateStyles}}/js/chart.js"></script>
+    <style>
+        @media print {
+            @page {
+                size: A5 portrait;
+            }
+            .reports-wrapper {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+ <div class="reports-wrapper home-wrapper bigbanner-wrapper" style="background: #1d472e;">
+    <div class="content-wrapper">
+        <div class="home-banner" style="background:url({{this.pathReportTemplateStyles}}/images/sales-report-banner.jpg) no-repeat center top">
+            <div class="home-logo">
+                <img src="{{this.pathReportTemplateStyles}}/images/stallion-main-logo.png" alt="Stallion Match"/>
+            </div>
+            <div class="green-tiles"><img src="{{this.pathReportTemplateStyles}}/images/green-tiles.png" alt="SMP"/></div>
+        </div>
+        <div class="home-content">
+            <h1>Powering<br/>Tomorrow’s Winners</h1>
+            <h5>Stallion X Breeding <strong>Stock Sale</strong> Report</h5>
+            <!-- <div class="home-footer">
+                <img src="{{this.pathReportTemplateStyles}}/images/stallion-main-logo.png" alt="Stallion Match"/>
+            </div> -->
+        </div>
+    </div>
+    <!-- <div class="footer-wrapper"></div> -->
+ </div> 
+ <div class="reports-wrapper inner-wrapper" style="margin-top: 16px; background: #ffffff;">
+    <div class="content-wrapper">
+       <h1>{{companyName}}<br/><span>{{saleName}}</span></h1>
+       <div class="affinity-internal">
+          <div style="margin-right: 100px;">
+            <h6>Date:</h6>
+            <h5>
+                {{reportDate}}
+            </h5>
+           </div>
+          <div>
+            <h6>Prepared for:</h6>
+            <h5>
+              {{preparedFor}}
+            </h5>
+          </div>
+       </div>
+       <!--<div class="report-internal">
+        <div>
+          <h6>Fee Range:</h6>
+          <h5>
+            AUD 25,000 - AUD 120,000
+          </h5>
+         </div>
+     </div> -->
+     <div class="report-internal">
+        <div>
+          <h6>Start Date:</h6>
+          <h5>
+            {{startDate}}
+          </h5>
+         </div>
+     </div> 
+     <div class="report-internal">
+        <div>
+          <h6>Total Lots:</h6>
+          <h5>
+            {{totalLots}}
+          </h5>
+         </div>
+     </div>
+    <!--   <div class="affinity-internal">
+        <div>
+          <h6>Locations:</h6>
+          <h5>
+            Kentucky, New York, Pennsylvania, New Jersey,<br/> Maryland, USA
+          </h5>
+         </div>
+     </div>
+     <div class="affinity-internal">
+     <div>
+      <h6>Farms Included:</h6>
+      <h5>
+        Coolmore, Lane’s End, WinStar, Three Bridges
+      </h5>
+     </div>
+     </div> -->
+    </div>
+    <div class="footer-wrapper">
+        <img src="{{pathReportTemplateStyles}}/images/stallion-logo.png" alt="stallion match"/>
+    </div>
+ </div>
+ <div class="reports-wrapper inner-wrapper" style="margin-top: 16px; background: #ffffff;">
+    <div class="content-wrapper">
+       <h1>Stallion X Breeding Stock Sale Report<br/>Explained</h1>
+       <div class="affinity-analysis-internal">
+          <div>
+                <p>The Stallion X Breeding Stock Sale Report analyses every horse sold at auction. The report uses the efficiencies of machine learning to identify similar pedigrees amongst the stakes-winning population and deconstructs them to produce an:</p>
+                <p><span>                  
+                    - Aptitude Profile<br/>
+                    - Impact Analysis<br/>
+                    - Age Profile<br/>
+                    - Distance Profile<br/>
+                    - Success Profile<br/>
+                    - Rating<br/>
+                    - Top 15 Stakes Winners
+                </span>
+                </p> 
+                <p>The final result is a detailed report which analyses both the male and female ancestors in a pedigree within five generations.</p>
+           </div>
+          <div>
+                <p class="success">
+                <span>Age Profile</span><br/>
+                All stakes winners with a similar pedigree to the proposed hypothetical mating are plotted on a radar chart by sex, showing the stakes-winning success by age and sex.<br/>
+                The resulting spread is then analysed, and an Age Profile is determined.
+                </p>
+                <p class="success">
+                 <span>Distance Profile</span><br/>
+                 All stakes winners with a similar pedigree to the proposed hypothetical mating are plotted on a radar chart by sex, showing the stakes-winning success by distance and sex.<br/>
+                 The resulting spread is then analysed, and a Distance Profile is determined - Sprinter, Middle-Distance, Stayer.
+                </p>
+                <p class="success">
+                    <span>Success Profile</span><br/>
+                    This profile is purely pedigree-based and analyses the success of 20 key crosses within the complete pedigree of the planned mating. The results are as a % and the total number of runners. Each cell calculates the stakes winners to runners rate of the ancestors above and the left for the previous five years. A cell's shading represents the following:
+                   </p>
+                <p class="success" style="padding-bottom:0px;">
+                    <span style="color:#BD9A68;">Gold:</span> represents an elite strike rate in the top 10% of the population.
+                </p>
+                <p class="success" style="padding-bottom:0px;">
+                        <span style="color:#007142;">Green:</span> represents an above-average strike rate within the top 30% of the population.
+                 <p class="success">
+                    <span style="color:#C75227;">Burnt Orange:</span> represents a below-average strike rate that is in the bottom 30% of the population.
+            </p>
+            <p class="success">
+                <span>Impact Profile</span><br/>
+                G1 Goldmine’s unique algorithm determines the effectiveness of 20 critical crosses within five generations on both the sire and broodmare’s side of the pedigree. The higher the numerical value, the better the cross has performed. A negative number means the cross has underperformed expectations. And ‘x’ indicates the sample size for this cross is too small
+               </p>
+            </h4>
+          </div>
+       </div>
+    </div>
+    <div class="footer-wrapper">
+        <img src="{{pathReportTemplateStyles}}/images/stallion-logo.png" alt="stallion match"/>
+    </div>
+ </div>
+ {{#each salesAnalysisSummary}}
+ {{#each this}}
+ <div class="reports-wrapper inner-wrapper" style="margin-top: 16px; background: #ffffff;">
+    <div class="content-wrapper sales-wrapper">
+        
+       <h1>{{this.sireName}} x {{this.damName}} <span>{{this.horseName}}</span></h1>
+       <div class="sales-pedigree">
+        <table width="100%">
+            <tbody>
+                <tr>
+                    <td width="25%">
+                    <div class="pedegree-header-list">
+                        <h5>Rating:</h5>
+                        <p>{{this.rating}}/100</p>
+                    </div>
+                </td>
+                    <td width="25%">
+                        <div class="pedegree-header-list">
+                            <h5>Colour:</h5>
+                            <p>{{this.horseColour}}</p>
+                        </div>
+                    </td>
+                    <td width="25%">
+                        <div class="pedegree-header-list">
+                            <h5>Sex:</h5>
+                            <p>{{this.horseGender}}</p>
+                           <p>-</p>
+                        </div>
+                    </td>
+                    <td rowspan="2" width="25%" align="right">
+                        <div class="pedegree-header-list">
+                            {{#ifEq this.stallionMatch "20/20 Match"}}
+                            <button class="green-button"><img src="{{../../this.pathReportTemplateStyles}}/images/lightening-bolt.png" alt=""> <span>{{this.stallionMatch}}</span></button>
+                            {{/ifEq}}
+                            {{#ifEq this.stallionMatch "Perfect Match"}}
+                            <button class="green-button mintgreen-button"><img src="{{../../this.pathReportTemplateStyles}}/images/fire.svg" alt=""> <span>{{this.stallionMatch}}</span></button>
+                            {{/ifEq}}
+                        </div>
+                    </td>
+                  </tr>
+                <tr>
+                    <td>
+                        <div class="pedegree-header-list">
+                            <h5>Type:</h5>
+                            <p>{{this.lotType}}</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="pedegree-header-list">
+                            <h5>Vendor:</h5>
+                            <p>{{this.vendor}}</p>
+                        </div>
+                    </td>
+                    <td></td>
+                  </tr>
+            </tbody>
+          </table>
+        </div>
+ <!-- pedegree-started -->
+   <div class="pedegree-box zero-gen-hide">
+    <div class="tree__line" data-num="1"></div>
+    <div class="tree__line" data-num="2"></div>
+    <div class="tree__line" data-num="3"></div>
+    <div class="tree__line" data-num="4"></div>
+    <div class="tree__line" data-num="5"></div>
+    <div class="tree__line" data-num="6"></div>
+    <div class="tree__line" data-num="7"></div> 
+    {{#each this.pedigree}}
+    {{#if @index}}
+    {{#ifFourth @index}}
+    <div class="tree__col" data-col="{{inc @index}}">
+       {{#each this}}
+       <div class="tree__cellgroup">
+           {{#each this}}
+               <div class="tree__cell">
+                   <div class="tree_cell_box {{this.colour}}">
+                       <h6>{{this.horseName}}</h6>
+                       <!-- {{#if this.category}}
+                           <p>{{this.category}}</p>
+                       {{/if}} -->
+                   </div>
+               </div>
+           {{/each}}
+       </div>
+       {{/each}}
+   </div>
+    {{else}}
+    <div class="tree__col" data-col="{{inc @index}}">
+       {{#each this}}
+       <div class="tree__cell">
+           <div class="tree_cell_box {{this.colour}}">
+               <h6>{{this.horseName}}</h6>
+               {{#lEq this.generation 2}}
+                    {{#if this.category}}
+                        <p>{{this.category}}</p>
+                    {{/if}}
+                {{/lEq}}
+           </div>
+       </div>
+       {{/each}}
+    </div>
+    {{/ifFourth}}
+    {{else}}
+    <div class="tree__col" data-col="1">
+       {{#each this}}
+       <div class="tree__cell">
+           <div class="tree_cell_box">
+               <h6>{{this.horseName}}</h6>
+               {{#if this.category}}
+                   <p>{{this.category}}</p>
+               {{/if}}
+           </div>
+       </div>
+       {{/each}}
+    </div> 
+    {{/if}}
+    {{/each}}
+  </div>
+<!-- pedegree-End -->
+  
+        <h3 style="margin-bottom: 0px;">Impact Profile</h3>
+        <div class="datatable salestable">
+            <table>
+                <tbody>
+                    {{#each this.impactProfile}}
+                    <tr>
+                        <td>{{this.column1.name}}</td>
+                        <td class="equal-width"><span class="{{this.column2.color}}">{{this.column2.name}}</span></td>
+                        <td class="equal-width"><span class="{{this.column3.color}}">{{this.column3.name}}</span></td>
+                        <td class="equal-width"><span class="{{this.column4.color}}">{{this.column4.name}}</span></td>
+                        <td class="equal-width"><span class="{{this.column5.color}}">{{this.column5.name}}</span></td>
+                        <td class="equal-width"><span class="{{this.column6.color}}">{{this.column6.name}}</span></td>
+                    </tr>
+                    {{/each}}
+                     
+                </tbody>
+              </table>
+        </div> 
+       
+
+   </div>
+    <div class="footer-wrapper">
+        <img src="{{../../this.pathReportTemplateStyles}}/images/stallion-logo.png" alt="stallion match"/>
+    </div>
+ </div> 
+ <div class="reports-wrapper inner-wrapper" style="margin-top: 16px; background: #ffffff;">
+
+    <div class="content-wrapper sales-wrapper">
+        <h1>{{this.horseName}} x {{../../mareName}}</h1>
+        <div class="sales-horse">
+            <!-- aptitude-profile-wrapper -->
+            <div class="aptitude">
+               
+               <h3 style="margin-bottom: 0px;">Aptitude Profile</h3>
+               
+               <div class="aptitude-profile-body">
+                       <canvas id="GRAPH_BUBBLE_STALLIONSEARCH_APTITUDE_{{this.horseId}}" style="width:1038px; height: 500px;"></canvas>
+                       <img id="GRAPH_BUBBLE_STALLIONSEARCH_APTITUDE_IMAGE_{{this.horseId}}" src=""/>
+                      <input type="text" id="READY_SALES_GRAPH_APTITUDE_{{this.horseId}}" style="visibility: hidden; opacity: 0;"> 
+                   
+               </div>
+           </div>
+</div>       
+        
+        <div class="common-datatable stallion-ancestors-table">
+            <h3 style="margin-top:18px ;">Pedigree Profile <span>{{this.profile}}</span></h3>
+            <div class="pedigree-graph" style="height: 250px;">
+                <div>
+                    <div class="STALLION_AGE">
+                        <canvas id="GRAPH_RADAR_STALLION_AGE_{{this.horseId}}" style="width:100%; height: 280px; float:left"></canvas>
+                        <img id="GRAPH_RADAR_STALLION_AGE_IMAGE_{{this.horseId}}" src=""/>
+                        <input type="text" id="READY_STALLION_GRAPH_AGE_{{this.horseId}}" style="visibility: hidden; opacity: 0;">
+                    </div>
+                </div>
+                <div>
+                    <div class="STALLION_DISTANCE">
+                        <canvas id="GRAPH_RADAR_STALLION_DISTANCE_{{this.horseId}}" style="width:100%; height: 280px; float:left"></canvas>
+                        <img id="GRAPH_RADAR_STALLION_DISTANCE_IMAGE_{{this.horseId}}" src=""/>
+                        <input type="text" id="READY_STALLION_GRAPH_DISTANCE_{{this.horseId}}" style="visibility: hidden; opacity: 0;">
+                    </div>
+                </div>
+             </div>
+           </div>     
+    </div>
+    <div class="footer-wrapper">
+        <img src="{{../../this.pathReportTemplateStyles}}/images/stallion-logo.png" alt="stallion match"/>
+    </div>
+ </div>
+ <div class="reports-wrapper inner-wrapper" style="margin-top: 16px; background: #ffffff;">
+
+    <div class="content-wrapper sales-wrapper">
+        <h1>{{this.horseName}} x {{../../mareName}}</h1>
+
+
+        <div class="common-datatable stallion-ancestors-table">
+            <h3 style="margin-bottom: 0px;">Success Profile</h3>
+             <div class="datatable">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th class="equal-width"></th>
+                            <th class="equal-width"></th>
+                            <th class="equal-width"></th>
+                            <th class="equal-width"></th>
+                            <th class="equal-width"></th>
+                          </tr>
+                    </thead>
+                    <tbody>
+                        {{#each this.successProfile}}
+                        <tr>
+                            <td>{{this.column1.name}}</td>
+                            <td class="equal-width"><span class="{{this.column2.color}}">{{this.column2.name}}</span></td>
+                            <td class="equal-width"><span class="{{this.column3.color}}">{{this.column3.name}}</span></td>
+                            <td class="equal-width"><span class="{{this.column4.color}}">{{this.column4.name}}</span></td>
+                            <td class="equal-width"><span class="{{this.column5.color}}">{{this.column5.name}}</span></td>
+                            <td class="equal-width"><span class="{{this.column6.color}}">{{this.column6.name}}</span></td>
+                        </tr>
+                        {{/each}}
+                       
+                    </tbody>
+                  </table>
+             </div>
+           </div>
+       
+           
+        <div class="stake-winners" style="margin-top:15px ;">
+            <h3>Top 15 Stakes Winners Comparison</h3>
+            <div class="common-datatable stakes-comparison">
+                <div class="datatable">
+                   <table>
+                       <thead>
+                           <tr>
+                               <th>Horse</th>
+                               <th class="equal-width">G1</th>
+                               <th class="equal-width">G2</th>
+                               <th class="equal-width">G3</th>
+                               <th class="equal-width">Exact Score</th>
+                               <th class="equal-width">Similarity %</th>
+                             </tr>
+                       </thead>
+                       <tbody>
+                        {{#each this.stakeWinners}}
+                      
+                           <tr>
+                               <td>{{this.Horsename}} 
+                                {{#ifEq this.sex "M"}}
+                                <span class="stakes-male">{{this.sex}}</span>
+                                {{/ifEq}}
+                                {{#ifEq this.sex "F"}}
+                                <span class="stakes-female">{{this.sex}}</span>
+                                {{/ifEq}}
+                               </td>
+                               <td>{{this.g1}}</td>
+                               <td>{{this.g2}}</td>
+                               <td>{{this.g3}}</td>
+                               <td>{{this.ExactScore}}</td>
+                               <td>{{this.CSI}}</td>
+                             </tr>
+                             {{/each}}
+                        
+                       </tbody>
+                     </table>
+                </div>
+              </div>
+           </div>
+
+</div>
+ <div class="footer-wrapper">
+    <img src="{{../../this.pathReportTemplateStyles}}/images/stallion-logo.png" alt="stallion match"/>
+</div>
+</div>
+ {{/each}}
+ {{/each}}
+ </body>
+</html>

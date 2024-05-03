@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stallion Match Broodmare Affinity</title>
+    <link rel="stylesheet" href="{{this.pathReportTemplateStyles}}/css/reports.css">
+    <link rel="stylesheet" href="{{this.pathReportTemplateStyles}}/css/pedegree.css">
+    <style>
+        @media print {
+            @page {
+                size: A5 portrait;
+            }
+            .reports-wrapper {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+ <div class="reports-wrapper home-wrapper" style="background: #1d472e;">
+    <div class="content-wrapper">
+        <div class="home-banner" style="background:url({{this.pathReportTemplateStyles}}/images/mare-affinity-banner.jpg) no-repeat center top">
+            <div class="green-tiles"><img src="{{this.pathReportTemplateStyles}}/images/green-tiles.png" alt="SMP"/></div>
+        </div>
+        <div class="home-content">
+            <h1>Powering<br/>Tomorrow’s Winners</h1>
+            <h5><strong>Broodmare Affinity</strong> Report</h5>
+            <div class="home-footer">
+                <img src="{{this.pathReportTemplateStyles}}/images/stallion-main-logo.png" alt="Stallion Match"/>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="footer-wrapper"></div> -->
+ </div> 
+
+ <div class="reports-wrapper inner-wrapper" style="margin-top: 16px; background: #ffffff;">
+    <div class="content-wrapper">
+       <h1>{{mareName}}<br/><span>({{cob}}, {{yob}}, {{sireName}} X {{damName}})</span></h1>
+       <div class="affinity-internal">
+          <div style="margin-right: 100px;">
+            <h6>Date:</h6>
+            <h5>
+                {{reportDate}}
+            </h5>
+           </div>
+          <div>
+            <h6>Prepared for:</h6>
+            <h5>
+                {{preparedFor}}
+            </h5>
+          </div>
+       </div>
+       <div class="report-internal">
+        <div>
+          <h6>Email Address:</h6>
+          <h5>
+            {{preparedForEmail}}
+          </h5>
+         </div>
+     </div>
+     <div class="report-internal">
+        <div>
+          <h6>Location(s):</h6>
+          <h5>
+            {{locations}}
+          </h5>
+        </div>
+     </div>
+    </div>
+    <div class="footer-wrapper">
+        <img src="{{this.pathReportTemplateStyles}}/images/stallion-logo.png" alt="stallion match"/>
+    </div>
+ </div>  
+ 
+ <div class="reports-wrapper inner-wrapper" style="margin-top: 16px; background: #ffffff;">
+    <div class="content-wrapper">
+       <h1>Broodmare Affinity Analysis<br/> Explained</h1>
+       <div class="affinity-analysis-internal">
+          <div>
+                <p>The Mare Affinity Analysis looks at 4 of the broodmare’s key components:-</p>
+                <p><span>
+                    - Sire<br/>
+                    - Grandsire<br/>
+                    - Broodmare Sire<br/>
+                    - Broodmare GrandSire
+                </span>
+                </p> 
+                <p>And then looks at ancestors in the stallion population that will provide positive impacts with each of the broodmare’s components above.</p>
+                <p>A related stakes winners report and positive sirelines report form part of this analysis and include all sirelines within a select location that perform well.
+                </p>
+            </h4>
+           </div>
+          <div>
+                <p class="success">
+                <span>Success Profile</span><br/>
+                This profile is purely pedigree-based and analyses the success of key ancestors most commonly found within 5 generations of your broodmare. Each cell calculates the stakes winners to runners rate of the ancestor with the specific key ancestor (i.e. Sire, Grandsire, etc). A cell's shading represents the following:
+                </p>
+                <p class="success">
+                <span style="color:#BD9A68;">Gold</span> - represents an elite strike rate in the top 10% of the population.
+                </p>
+                <p class="success">
+                <span style="color:#007142;">Green</span> - represents an above-average strike rate within the top 30% of the population.
+                </p>
+                <p class="success">
+                <span style="color:#C75227;">Burnt Orange</span> - represents a below-average strike rate that is in the bottom 30% of the population.
+                </p>
+                <p class="success">
+                The numerical value in brackets represents the success profile of that ancestor when it is duplicated within the pedigree within 5 generations.
+                </p>
+            </h4>
+          </div>
+       </div>
+    </div>
+    <div class="footer-wrapper">
+        <img src="{{this.pathReportTemplateStyles}}/images/stallion-logo.png" alt="stallion match"/>
+    </div>
+ </div> 
+
+  <div class="reports-wrapper inner-wrapper" style="margin-top: 16px; background: #ffffff;">
+    <div class="content-wrapper">
+       <h3>Broodmare Affinity Analysis</h3>
+
+
+       <!-- pedegree-started -->
+       <div class="pedegree-box">
+        <div class="tree__line" data-num="1"></div>
+        <div class="tree__line" data-num="2"></div>
+        <div class="tree__line" data-num="3"></div>
+        <div class="tree__line" data-num="4"></div>
+        <div class="tree__line" data-num="5"></div>
+        <div class="tree__line" data-num="6"></div>
+        <div class="tree__line" data-num="7"></div>
+        {{#each pedigree}}
+        {{#if @index}}
+        {{#ifFifthGen @index}}
+        <div class="tree__col" data-col="{{@index}}">
+           {{#each this}}
+           <div class="tree__cellgroup">
+               {{#each this}}
+                   <div class="tree__cell">
+                       <div class="tree_cell_box {{this.colour}}">
+                           <h6>{{this.horseName}}</h6>
+                           <!-- {{#if this.category}}
+                               <p>{{this.category}}</p>
+                           {{/if}} -->
+                       </div>
+                   </div>
+               {{/each}}
+           </div>
+           {{/each}}
+       </div>
+        {{else}}
+        <div class="tree__col" data-col="{{@index}}">
+           {{#each this}}
+           <div class="tree__cell">
+               <div class="tree_cell_box {{this.colour}}">
+                   <h6>{{this.horseName}}</h6>
+                   {{#lEq this.generation 2}}
+                        {{#if this.category}}
+                            <p>{{this.category}}</p>
+                        {{/if}}
+                     {{/lEq}}
+               </div>
+           </div>
+           {{/each}}
+        </div>
+        {{/ifFifthGen}}
+        {{else}}
+        <div class="tree__col" data-col="0">
+           {{#each this}}
+           <div class="tree__cell">
+               <div class="tree_cell_box">
+                   <div class="tree_cell_box_left">
+                      <div class="avatar_box">
+                        <img src="{{this.image}}" alt="" style="width: 22px;height: 22px;">
+                      </div>
+                   </div>
+                   <div class="tree_cell_box_right">
+                       <h6>{{this.horseName}}</h6>
+                       {{#if this.category}}
+                           <p>{{this.category}}</p>
+                       {{/if}}
+                   </div>
+               </div>
+           </div>
+           {{/each}}
+        </div>
+        {{/if}}
+        {{/each}}
+      </div>
+      
+<!-- pedegree-End -->
+
+<!-- Stallion Ancestors Affinity -->
+{{#ifEq this.commonAncestorsList.length 0}} 
+<div class="common-datatable stallion-ancestors-table">
+    <h3>Stallion Ancestors Affinity with Each Broodmare Component</h3>
+        <div class="datatable">
+            <table>
+                <thead>
+                    <tr>
+                        {{#if ancestorsAffinityHeader.column1}}
+                        <th>{{ancestorsAffinityHeader.column1}}</th>
+                        {{/if}}
+                        {{#if ancestorsAffinityHeader.column2}}
+                        <th class="equal-width">{{ancestorsAffinityHeader.column2}}</th>
+                        {{/if}}
+                        {{#if ancestorsAffinityHeader.column3}}
+                        <th class="equal-width">{{ancestorsAffinityHeader.column3}}<br/>(SIRE) %</th>
+                        {{/if}}
+                        {{#if ancestorsAffinityHeader.column4}}
+                        <th class="equal-width">{{ancestorsAffinityHeader.column4}}<br/>(GRANDSIRE) %</th>
+                        {{/if}}
+                        {{#if ancestorsAffinityHeader.column5}}
+                        <th class="equal-width">{{ancestorsAffinityHeader.column5}}<br/>(BROODMARE SIRE) %</th>
+                        {{/if}}
+                        {{#if ancestorsAffinityHeader.column6}}
+                        <th class="equal-width">{{ancestorsAffinityHeader.column6}}<br/>(BROODMARE GRANDSIRE) %</th>
+                        {{/if}}
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+              </table>
+         </div>
+       </div>
+    </div>
+    <div class="footer-wrapper">
+        <img src="{{this.pathReportTemplateStyles}}/images/stallion-logo.png" alt="stallion match"/>
+    </div>
+</div>
+{{else}}
+    {{#each this.commonAncestorsList}}  
+    {{#ifEq @index 0}}   
+    <div class="common-datatable stallion-ancestors-table">
+        <h3>Stallion Ancestors Affinity with Each Broodmare Component</h3>
+            <div class="datatable">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>{{../ancestorsAffinityHeader.column1}}</th>
+                            <th class="equal-width">{{../ancestorsAffinityHeader.column2}}</th>
+                            <th class="equal-width">{{../ancestorsAffinityHeader.column3}}<br/>(SIRE) %</th>
+                            <th class="equal-width">{{../ancestorsAffinityHeader.column4}}<br/>(GRANDSIRE) %</th>
+                            <th class="equal-width">{{../ancestorsAffinityHeader.column5}}<br/>(BROODMARE SIRE) %</th>
+                            <th class="equal-width">{{../ancestorsAffinityHeader.column6}}<br/>(BROODMARE GRANDSIRE) %</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each this}}
+                        {{#ifEq this.level 1}}
+                        <tr>
+                            <td><b>{{this.column1}}</b></td>
+                            <td class="equal-width"><span class="white">{{this.column2}}</span></td>
+                            <td class="equal-width"><span class={{this.column3Color}}>{{this.column3}}</span></td>
+                            <td class="equal-width"><span class={{this.column4Color}}>{{this.column4}}</span></td>
+                            <td class="equal-width"><span class={{this.column5Color}}>{{this.column5}}</span></td>
+                            <td class="equal-width"><span class={{this.column6Color}}>{{this.column6}}</span></td>
+                        </tr>
+                        {{/ifEq}}
+                        {{#ifEq this.level 2}}
+                        <tr class="nested-datatable">
+                            <td><p><img src="{{../../this.pathReportTemplateStyles}}/images/reply.png" alt="" class="reply-img">  {{this.column1}}</p></td>
+                            <td class="equal-width"><span class="white">{{this.column2}}</span></td>
+                            <td class="equal-width"><span class={{this.column3Color}}>{{this.column3}}</span></td>
+                            <td class="equal-width"><span class={{this.column4Color}}>{{this.column4}}</span></td>
+                            <td class="equal-width"><span class={{this.column5Color}}>{{this.column5}}</span></td>
+                            <td class="equal-width"><span class={{this.column6Color}}>{{this.column6}}</span></td>
+                        </tr>
+                        {{/ifEq}}
+                        {{#ifEq this.level 3}}
+                        <tr class="nested-datatable nested-in-datatable">
+                            <td><p><img src="{{../../this.pathReportTemplateStyles}}/images/reply.png" alt="" class="reply-img">  {{this.column1}}</p></td>
+                            <td class="equal-width"><span class="white">{{this.column2}}</span></td>
+                            <td class="equal-width"><span class={{this.column3Color}}>{{this.column3}}</span></td>
+                            <td class="equal-width"><span class={{this.column4Color}}>{{this.column4}}</span></td>
+                            <td class="equal-width"><span class={{this.column5Color}}>{{this.column5}}</span></td>
+                            <td class="equal-width"><span class={{this.column6Color}}>{{this.column6}}</span></td>
+                        </tr>
+                        {{/ifEq}}
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+        <div class="footer-wrapper">
+            <img src="{{../this.pathReportTemplateStyles}}/images/stallion-logo.png" alt="stallion match"/>
+        </div>
+    </div> 
+    {{else}}
+    <div class="reports-wrapper inner-wrapper" style="margin-top: 16px; background: #ffffff;">
+        <div class="content-wrapper">
+        <h3>Broodmare Affinity Analysis</h3>
+        <div class="common-datatable stallion-ancestors-table">
+            <h3 style="margin-top: 11px !important;">Stallion Ancestors Affinity with Each Broodmare Component - continued</h3>
+            <div class="datatable">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>{{../ancestorsAffinityHeader.column1}}</th>
+                            <th class="equal-width">{{../ancestorsAffinityHeader.column2}}</th>
+                            <th class="equal-width">{{../ancestorsAffinityHeader.column3}}<br/>(SIRE) %</th>
+                            <th class="equal-width">{{../ancestorsAffinityHeader.column4}}<br/>(GRANDSIRE) %</th>
+                            <th class="equal-width">{{../ancestorsAffinityHeader.column5}}<br/>(BROODMARE SIRE) %</th>
+                            <th class="equal-width">{{../ancestorsAffinityHeader.column6}}<br/>(BROODMARE GRANDSIRE) %</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each this}}
+                        {{#ifEq this.level 1}}
+                        <tr>
+                            <td><b>{{this.column1}}</b></td>
+                            <td class="equal-width"><span class="white">{{this.column2}}</span></td>
+                            <td class="equal-width"><span class={{this.column3Color}}>{{this.column3}}</span></td>
+                            <td class="equal-width"><span class={{this.column4Color}}>{{this.column4}}</span></td>
+                            <td class="equal-width"><span class={{this.column5Color}}>{{this.column5}}</span></td>
+                            <td class="equal-width"><span class={{this.column6Color}}>{{this.column6}}</span></td>
+                        </tr>
+                        {{/ifEq}}
+                        {{#ifEq this.level 2}}
+                        <tr class="nested-datatable">
+                            <td><p><img src="{{../../this.pathReportTemplateStyles}}/images/reply.png" alt="" class="reply-img">  {{this.column1}}</p></td>
+                            <td class="equal-width"><span class="white">{{this.column2}}</span></td>
+                            <td class="equal-width"><span class={{this.column3Color}}>{{this.column3}}</span></td>
+                            <td class="equal-width"><span class={{this.column4Color}}>{{this.column4}}</span></td>
+                            <td class="equal-width"><span class={{this.column5Color}}>{{this.column5}}</span></td>
+                            <td class="equal-width"><span class={{this.column6Color}}>{{this.column6}}</span></td>
+                        </tr>
+                        {{/ifEq}}
+                        {{#ifEq this.level 3}}
+                        <tr class="nested-datatable nested-in-datatable">
+                            <td><p><img src="{{../../this.pathReportTemplateStyles}}/images/reply.png" alt="" class="reply-img">  {{this.column1}}</p></td>
+                            <td class="equal-width"><span class="white">{{this.column2}}</span></td>
+                            <td class="equal-width"><span class={{this.column3Color}}>{{this.column3}}</span></td>
+                            <td class="equal-width"><span class={{this.column4Color}}>{{this.column4}}</span></td>
+                            <td class="equal-width"><span class={{this.column5Color}}>{{this.column5}}</span></td>
+                            <td class="equal-width"><span class={{this.column6Color}}>{{this.column6}}</span></td>
+                        </tr>
+                        {{/ifEq}}
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+        <div class="footer-wrapper">
+            <img src="{{../this.pathReportTemplateStyles}}/images/stallion-logo.png" alt="stallion match"/>
+        </div>
+    </div> 
+    {{/ifEq}}
+    {{/each}}
+{{/ifEq}}
+
+<!-- End Stallion Ancestors Affinity -->
+<!-- Stakes winners comparison -->
+{{#each stakeWinners}}
+<div class="reports-wrapper inner-wrapper" style="margin-top: 16px; background: #ffffff;">
+    <div class="content-wrapper">
+       <h1>Related Stakes Winners</h1>
+       <div class="stake-winners">
+        <h3>Stakes Winners Comparison {{#ifNotEq @index 0}}<span>- continued</span> {{/ifNotEq}} </h3>
+        <div class="common-datatable stakes-comparison">
+            <div class="datatable">
+               <table>
+                   <thead>
+                       <tr>
+                           <th class="report-width">Horse</th>
+                           <th class="data-width">G1</th>
+                           <th class="data-width">G2</th>
+                           <th class="data-width">G3</th>
+                           <th class="data-width">Exact Score</th>
+                           <th class="data-width">Similarity Score</th>
+                         </tr>
+                   </thead>
+                   <tbody>
+                        {{#each this}}
+                        <tr>
+                            <td >{{this.Horsename}} 
+                            {{#ifEq this.sex "M"}}
+                            <span class="stakes-male">{{this.sex}}</span>
+                            {{/ifEq}}
+                            {{#ifEq this.sex "F"}}
+                            <span class="stakes-female">{{this.sex}}</span>
+                            {{/ifEq}}
+                            </td>
+                            <td>{{this.G1}}</td>
+                            <td>{{this.G2}}</td>
+                            <td>{{this.G3}}</td>
+                            <td>{{this.ExactScore}}</td>
+                            <td>{{this.CSI}}</td>
+                        </tr>
+                        {{/each}}                      
+                   </tbody>
+                 </table>
+            </div>
+          </div>
+       </div>
+    </div>
+    <div class="footer-wrapper">
+        <img src="{{../this.pathReportTemplateStyles}}/images/stallion-logo.png" alt="stallion match"/>
+    </div>
+ </div>
+{{/each}}
+<!-- End Stakes winners comparison -->
+
+<!-- Top Performing Sirelines -->
+{{#each topperformingsirelines}}
+ <div class="reports-wrapper inner-wrapper" style="margin-top: 16px; background: #ffffff;">
+    <div class="content-wrapper">
+       <h1>Top Performing Sirelines</h1>
+       <div class="stake-winners">
+        <h3>Matched With Your Mare {{#ifNotEq @index 0}}<span>- continued</span> {{/ifNotEq}}</h3>
+        <div class="common-datatable stakes-comparison">
+            <div class="datatable">
+               <table>
+                   <thead>
+                        <th style="width:180px;">Horse</th>
+                        <th class="top-width">G1 Winners</th>
+                        <th class="top-width">Stakes Winners</th>
+                        <th class="top-width">Runners</th>
+                        <th class="top-width">G1/Rnrs %</th>
+                        <th class="top-width">SWs/Rnrs %</th>
+                        <th style="width:34px;">&nbsp;</th>
+                   </thead>
+                   <tbody>
+                        {{#each this}}
+                        <tr>
+                           <td>{{this.horseName}}</td>
+                           <td>{{this.g1Winners}}</td>
+                           <td>{{this.stakesWinners}}</td>
+                           <td>{{this.runners}}</td>
+                           <td>{{this.g1RnrsPercent}}</td>
+                           <td>{{this.sWsRnrsPercent}}</td>
+                           <td class={{this.colour}}>&nbsp;</td>
+                         </tr>
+                        {{/each}}                      
+                   </tbody>
+                 </table>
+            </div>
+          </div>
+       </div>
+       
+       
+    </div>
+    <div class="footer-wrapper">
+        <img src="{{../this.pathReportTemplateStyles}}/images/stallion-logo.png" alt="stallion match"/>
+    </div>
+ </div> 
+{{/each}}                      
+<!-- End Top Performing Sirelines -->
+
+</body>
+</html>

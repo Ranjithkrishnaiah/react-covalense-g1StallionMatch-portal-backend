@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stallion Report</title>
+    <link rel="stylesheet" href="{{this.pathReportTemplateStyles}}/css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js" ></script>    
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="container stallion-report-page">
+            <!-- header -->
+            <div class="report-header-box">
+                <div class="report-header-box-left">
+                    <div class="br-img-box"><img src="{{profilePic}}" alt="" width="72" height="72"></div>
+                    <div class="br-img-right">
+                        <h2>{{stallionName}}</h2>
+                        <h6>Service Fee: {{serviceFee}}</h6>
+                        <h6>YOB: {{yob}}</h6>
+                    </div>
+                </div>
+                <div class="report-header-box-right">
+                    <div class="report-header-box-right-button"></div>
+                    <div class="report-header-box-right-progress">
+                        <div class="progress-bar">
+                           <div class="progress-bar-header">
+                                <h6>Profile Rating: 
+                                    {{#lT profileRating 25}}
+                                        <b>Poor</b>
+                                    {{else}}
+                                        {{#lT profileRating 75}}
+                                            <b>Intermediate</b>
+                                        {{else}}
+                                            <b>Good</b>
+                                        {{/lT}}
+                                    {{/lT}}
+                                </h6>
+                                <i class="icon-Info-circle">
+                                    <img src="{{this.pathReportTemplateStyles}}/images/info-icon.svg" alt="">
+                                </i>
+                           </div>
+                           <div class="progress-bar-body">
+                            <span class="linearprogress-root" id="linearprogress-root" role="progressbar">
+                                
+                            </span>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           <!-- End header -->
+
+           <!-- Graph Map -->
+           <div class="graph-wrapper">
+               <div class="common-header graph-header">
+                <h3>Stallion Match Activity</h3>
+                <div class="daterange"><p>{{reportDateRange}}</p> <img src="{{this.pathReportTemplateStyles}}/images/datepicker.svg" alt=""></div>
+               </div>
+               <div class="graph-body">
+                 <div class="graph-box">
+                    <!--<img src="{{this.pathReportTemplateStyles}}/images/graph.svg" alt="">-->
+                    <div class="myChartDiv" style="height:360px">
+                        <canvas id="myChart" ></canvas>
+                      </div>
+                 </div>
+
+                 <!-- first box-lines -->
+                 <div class="key-statistics-box-lines stallion-analytics-grid-row">
+
+                    <!-- col-1 -->
+                    <div class="key-statistics-block">
+                        <div class="key-statistics-block-top">
+                            <h6><span class="circle-status-color royal-blue"></span> SM Searches</h6>
+                        </div>
+                        <div class="key-statistics-block-bottom">
+                            <h4>{{closeAnalytics.SMSearches}}</h4>
+                        </div>
+                    </div>
+                     <!-- end col-1 -->
+
+                    <!-- col-1 -->
+                    <div class="key-statistics-block">
+                        <div class="key-statistics-block-top">
+                            <h6><span class="circle-status-color heritage-green"></span> 20/20 Matches </h6>
+                        </div>
+                        <div class="key-statistics-block-bottom">
+                            <h4>{{closeAnalytics.TwentyTwentyMatches}}</h4>
+                        </div>
+                    </div>
+                     <!-- end col-1 -->
+<!-- col-1 -->
+<div class="key-statistics-block">
+    <div class="key-statistics-block-top">
+        <h6><span class="circle-status-color mint-green"></span> Perfect Matches</h6>
+    </div>
+    <div class="key-statistics-block-bottom">
+        <h4>{{closeAnalytics.PerfectMatches}}</h4>
+    </div>
+</div>
+ <!-- end col-1 -->
+
+
+                </div>
+                <!-- end first box-lines -->
+
+
+               </div>
+           </div>
+           <!-- End Graph Map -->
+
+
+
+            <!-- Key Statistics -->
+            <div class="key-statistics-wrapper">
+                <div class="common-header">
+                 <h3>Key Statistics</h3>
+                </div>
+                <div class="key-statistics-body">
+                  <div class="key-statistics-box">
+
+                  <!-- first box-lines -->
+                  <div class="key-statistics-box-lines stallion-analytics-grid-row">
+
+        
+                    <div class="key-statistics-block">
+                        <div class="key-statistics-block-top">
+                            <h6>Stallion Match Searches <img src="{{this.pathReportTemplateStyles}}/images/info-icon.svg" alt=""></h6>
+                        </div>
+                        <div class="key-statistics-block-bottom">
+                            
+                            <h4>{{closeAnalytics.SMSearches}}</h4>
+                            {{#gT closeAnalytics.SMSearches  closeAnalytics.PreviousSMSearches}}
+                            <span class="arrow-icon arrow-up-block">
+                                <i class="icon-Arrow-up"><img src="{{infoIcon}}" alt=""></i> 
+                                {{closeAnalytics.SMSearchesDiff}}
+                            </span>
+                            {{/gT}}
+                            {{#lT closeAnalytics.SMSearches  closeAnalytics.PreviousSMSearches}}
+                            <span class="arrow-icon arrow-down-block">
+                                <i class="icon-Arrow-down"><img src="{{this.pathReportTemplateStyles}}/images/arrow-down.svg" alt=""></i> 
+                                {{closeAnalytics.SMSearchesDiff}}
+                            </span>
+                            {{/lT}}
+                        </div>
+                    </div>
+                     <!-- end block-1 -->
+                     <div class="key-statistics-block">
+                        <div class="key-statistics-block-top">
+                            <h6>20/20 Matches <img src="{{this.pathReportTemplateStyles}}/images/info-icon.svg" alt=""></h6>
+                        </div>
+                        <div class="key-statistics-block-bottom"> 
+                            <h4>{{closeAnalytics.TwentyTwentyMatches}}</h4>
+                            {{#gT closeAnalytics.TwentyTwentyMatches  closeAnalytics.PreviousTwentyTwentyMatches}}
+                            <span class="arrow-icon arrow-up-block">
+                                <i class="icon-Arrow-up"><img src="{{infoIcon}}" alt=""></i> 
+                                {{closeAnalytics.TwentyTwentyMatchesDiff}}
+                            </span>
+                            {{/gT}}
+                            {{#lT closeAnalytics.TwentyTwentyMatches  closeAnalytics.PreviousTwentyTwentyMatches}}
+                            <span class="arrow-icon arrow-down-block">
+                                <i class="icon-Arrow-down"><img src="{{this.pathReportTemplateStyles}}/images/arrow-down.svg" alt=""></i> 
+                                {{closeAnalytics.TwentyTwentyMatchesDiff}}
+                            </span>
+                            {{/lT}}
+                        </div>
+                    </div>
+                     <!-- end block-2 -->
+                     <div class="key-statistics-block">
+                        <div class="key-statistics-block-top">
+                            <h6>Perfect Matches <img src="{{this.pathReportTemplateStyles}}/images/info-icon.svg" alt=""></h6>
+                        </div>
+                        <div class="key-statistics-block-bottom"> 
+                            <h4>{{closeAnalytics.PerfectMatches}}</h4>
+                            {{#gT closeAnalytics.PerfectMatches  closeAnalytics.PreviousPerfectMatches}}
+                            <span class="arrow-icon arrow-up-block">
+                                <i class="icon-Arrow-up"><img src="{{infoIcon}}" alt=""></i> 
+                                {{closeAnalytics.PerfectMatchesDiff}}
+                            </span>
+                            {{/gT}}
+                            {{#lT closeAnalytics.PerfectMatches  closeAnalytics.PreviousPerfectMatches}}
+                            <span class="arrow-icon arrow-down-block">
+                                <i class="icon-Arrow-down"><img src="{{this.pathReportTemplateStyles}}/images/arrow-down.svg" alt=""></i> 
+                                {{closeAnalytics.PerfectMatchesDiff}}
+                            </span>
+                            {{/lT}}
+                        </div>
+                    </div>
+                     <!-- end block-3 -->
+                     <div class="key-statistics-block">
+                        <div class="key-statistics-block-top">
+                            <h6>Stallion Page Views <img src="{{this.pathReportTemplateStyles}}/images/info-icon.svg" alt=""></h6>
+                        </div>
+                        <div class="key-statistics-block-bottom"> 
+                            <h4>{{closeAnalytics.PageViews}}</h4>
+                            {{#gT closeAnalytics.PageViews  closeAnalytics.PreviousPageViews}}
+                            <span class="arrow-icon arrow-up-block">
+                                <i class="icon-Arrow-up"><img src="{{infoIcon}}" alt=""></i> 
+                                {{closeAnalytics.PageViewsDiffPercent}}%
+                            </span>
+                            {{/gT}}
+                            {{#lT closeAnalytics.PageViews  closeAnalytics.PreviousPageViews}}
+                            <span class="arrow-icon arrow-down-block">
+                                <i class="icon-Arrow-down"><img src="{{this.pathReportTemplateStyles}}/images/arrow-down.svg" alt=""></i> 
+                                {{closeAnalytics.PageViewsDiffPercent}}%
+                            </span>
+                            {{/lT}}
+
+                        </div>
+                    </div>
+                     <!-- end block-4 -->
+                     <div class="key-statistics-block">
+                        <div class="key-statistics-block-top">
+                            <h6># of Messages <img src="{{this.pathReportTemplateStyles}}/images/info-icon.svg" alt=""></h6>
+                        </div>
+                        <div class="key-statistics-block-bottom"> 
+                            <h4>{{closeAnalytics.Messages}}</h4>
+                            {{#gT closeAnalytics.Messages  closeAnalytics.PreviousMessages}}
+                            <span class="arrow-icon arrow-up-block">
+                                <i class="icon-Arrow-up"><img src="{{infoIcon}}" alt=""></i> 
+                                {{closeAnalytics.MessagesDiffPercent}}%
+                            </span>
+                            {{/gT}}
+                            {{#lT closeAnalytics.Messages  closeAnalytics.PreviousMessages}}
+                            <span class="arrow-icon arrow-down-block">
+                                <i class="icon-Arrow-down"><img src="{{this.pathReportTemplateStyles}}/images/arrow-down.svg" alt=""></i> 
+                                {{closeAnalytics.MessagesDiffPercent}}%
+                            </span>
+                            {{/lT}}
+                        </div>
+                    </div>
+                     <!-- end block-5 -->
+                     <div class="key-statistics-block">
+                        <div class="key-statistics-block-top">
+                            <h6># of Nominations <img src="{{this.pathReportTemplateStyles}}/images/info-icon.svg" alt=""></h6>
+                        </div>
+                        <div class="key-statistics-block-bottom"> 
+                            <h4>{{closeAnalytics.Nominations}}</h4>
+                            {{#gT closeAnalytics.Nominations  closeAnalytics.PreviousNominations}}
+                            <span class="arrow-icon arrow-up-block">
+                                <i class="icon-Arrow-up"><img src="{{infoIcon}}" alt=""></i> 
+                                {{closeAnalytics.NominationsDiffPercent}}%
+                            </span>
+                            {{/gT}}
+                            {{#lT closeAnalytics.Nominations  closeAnalytics.PreviousNominations}}
+                            <span class="arrow-icon arrow-down-block">
+                                <i class="icon-Arrow-down"><img src="{{this.pathReportTemplateStyles}}/images/arrow-down.svg" alt=""></i> 
+                                {{closeAnalytics.NominationsDiffPercent}}%
+                            </span>
+                            {{/lT}}
+                        </div>
+                    </div>
+                     <!-- end block-6 -->
+
+                     <div class="key-statistics-block">
+                        <div class="key-statistics-block-top">
+                            <h6># of Runners <img src="{{this.pathReportTemplateStyles}}/images/info-icon.svg" alt=""></h6>
+                        </div>
+                        <div class="key-statistics-block-bottom"> 
+                            <h4>{{keyStatistics.TotalRunners}}</h4>
+                            {{#gT keyStatistics.TotalRunners  keyStatistics.PreviousTotalRunners}}
+                            <span class="arrow-icon arrow-up-block">
+                                <i class="icon-Arrow-up"><img src="{{infoIcon}}" alt=""></i> 
+                                {{keyStatistics.TotalRunnersDiff}}
+                            </span>
+                            {{/gT}}
+                            {{#lT keyStatistics.TotalRunners  keyStatistics.PreviousTotalRunners}}
+                            <span class="arrow-icon arrow-down-block">
+                                <i class="icon-Arrow-down"><img src="{{this.pathReportTemplateStyles}}/images/arrow-down.svg" alt=""></i> 
+                                {{keyStatistics.TotalRunnersDiff}}
+                            </span>
+                            {{/lT}}
+                        </div>
+                    </div>
+                     <!-- end block-7 -->
+                     <div class="key-statistics-block">
+                        <div class="key-statistics-block-top">
+                            <h6># of Winners <img src="{{this.pathReportTemplateStyles}}/images/info-icon.svg" alt=""></h6>
+                        </div>
+                        <div class="key-statistics-block-bottom"> 
+                            <h4>{{keyStatistics.TotalWinners}}</h4>
+                            {{#gT keyStatistics.TotalWinners  keyStatistics.PreviousTotalWinners}}
+                            <span class="arrow-icon arrow-up-block">
+                                <i class="icon-Arrow-up"><img src="{{infoIcon}}" alt=""></i> 
+                                {{keyStatistics.TotalWinnersDiff}}
+                            </span>
+                            {{/gT}}
+                            {{#lT keyStatistics.TotalWinners  keyStatistics.PreviousTotalWinners}}
+                            <span class="arrow-icon arrow-down-block">
+                                <i class="icon-Arrow-down"><img src="{{this.pathReportTemplateStyles}}/images/arrow-down.svg" alt=""></i> 
+                                {{keyStatistics.TotalWinnersDiff}}
+                            </span>
+                            {{/lT}}
+                        </div>
+                    </div>
+                     <!-- end block-8 -->
+                     <div class="key-statistics-block">
+                        <div class="key-statistics-block-top">
+                            <h6># of Stakes Winners <img src="{{this.pathReportTemplateStyles}}/images/info-icon.svg" alt=""></h6>
+                        </div>
+                        <div class="key-statistics-block-bottom"> 
+                            <h4>{{keyStatistics.TotalStakeWinners}}</h4>
+                            {{#gT keyStatistics.TotalStakeWinners  keyStatistics.PreviousTotalStakeWinners}}
+                            <span class="arrow-icon arrow-up-block">
+                                <i class="icon-Arrow-up"><img src="{{infoIcon}}" alt=""></i> 
+                                {{keyStatistics.TotalStakeWinnersDiff}}
+                            </span>
+                            {{/gT}}
+                            {{#lT keyStatistics.TotalStakeWinners  keyStatistics.PreviousTotalStakeWinners}}
+                            <span class="arrow-icon arrow-down-block">
+                                <i class="icon-Arrow-down"><img src="{{this.pathReportTemplateStyles}}/images/arrow-down.svg" alt=""></i> 
+                                {{keyStatistics.TotalStakeWinnersDiff}}
+                            </span>
+                            {{/lT}}
+                        </div>
+                    </div>
+                     <!-- end block-9 -->
+                     <div class="key-statistics-block">
+                        <div class="key-statistics-block-top">
+                            <h6>SW/RNRS Strike Rate <img src="{{this.pathReportTemplateStyles}}/images/info-icon.svg" alt=""></h6>
+                        </div>
+                        <div class="key-statistics-block-bottom"> 
+                            <h4>{{keyStatistics.StakeWinnersRunnersPerc}}% </h4>
+                            {{#gT keyStatistics.StakeWinnersRunnersPerc  keyStatistics.PreviousStakeWinnersRunnersPerc}}
+                            <span class="arrow-icon arrow-up-block">
+                                <i class="icon-Arrow-up"><img src="{{infoIcon}}" alt=""></i> 
+                                {{keyStatistics.StakeWinnersRunnersPercDiff}}
+                            </span>
+                            {{/gT}}
+                            {{#lT keyStatistics.StakeWinnersRunnersPerc  keyStatistics.PreviousStakeWinnersRunnersPerc}}
+                            <span class="arrow-icon arrow-down-block">
+                                <i class="icon-Arrow-down"><img src="{{this.pathReportTemplateStyles}}/images/arrow-down.svg" alt=""></i> 
+                                {{keyStatistics.StakeWinnersRunnersPercDiff}}
+                            </span>
+                            {{/lT}}
+                        </div>
+                    </div>
+                     <!-- end block-10 -->
+                     <div class="key-statistics-block">
+                        <div class="key-statistics-block-top">
+                            <h6>M/F Runners <img src="{{this.pathReportTemplateStyles}}/images/info-icon.svg" alt=""></h6>
+                        </div>
+                        <div class="key-statistics-block-bottom"> 
+                            <h4>{{keyStatistics.MaleRunners}} / {{keyStatistics.FemaleRunners}}</h4>
+                            {{#gT keyStatistics.MaleRunnersCurrPerc keyStatistics.PreviousMaleRunnersPerc}}
+                            <span class="arrow-icon arrow-up-block">
+                                <i class="icon-Arrow-up"><img src="{{infoIcon}}" alt=""></i> 
+                                {{keyStatistics.MaleRunnersCurrPerc}}
+                            </span>
+                            {{/gT}}
+                            {{#lT keyStatistics.MaleRunnersCurrPerc keyStatistics.PreviousMaleRunnersPerc}}
+                            <span class="arrow-icon arrow-down-block">
+                                <i class="icon-Arrow-down"><img src="{{this.pathReportTemplateStyles}}/images/arrow-down.svg" alt=""></i> 
+                                {{keyStatistics.PreviousMaleRunnersPerc}}
+                            </span>
+                            {{/lT}}
+                        </div>
+                    </div>
+                     <!-- end block-11 -->
+                     <div class="key-statistics-block">
+                        <div class="key-statistics-block-top">
+                            <h6>Winners/Runners <img src="{{this.pathReportTemplateStyles}}/images/info-icon.svg" alt=""></h6>
+                        </div>
+                        <div class="key-statistics-block-bottom"> 
+                            <h4>{{keyStatistics.WinnersRunnersPerc}}% </h4>
+                            {{#gT keyStatistics.WinnersRunnersPerc  keyStatistics.PreviousWinnersRunnersPerc}}
+                            <span class="arrow-icon arrow-up-block">
+                                <i class="icon-Arrow-up"><img src="{{infoIcon}}" alt=""></i> 
+                                {{keyStatistics.WinnersRunnersPercDiff}}
+                            </span>
+                            {{/gT}}
+                            {{#lT keyStatistics.WinnersRunnersPerc  keyStatistics.PreviousWinnersRunnersPerc}}
+                            <span class="arrow-icon arrow-down-block">
+                                <i class="icon-Arrow-down"><img src="{{this.pathReportTemplateStyles}}/images/arrow-down.svg" alt=""></i> 
+                                {{keyStatistics.WinnersRunnersPercDiff}}
+                            </span>
+                            {{/lT}}
+                        </div>
+                    </div>
+                     <!-- end block-12 -->
+                     
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <!-- End Key Statistics -->
+
+
+            <!-- Matched Mares in Stallion Match -->
+           <div class="matched-mare-wrapper">
+            <div class="common-header">
+             <h3>Matched Mares in Stallion Match</h3>
+             <p>View mares searched with your farm’s stallions and contact registered Stallion Match breeders.</p>
+            </div>
+            <div class="matched-mare-body">
+                <div class="common-datatable stakes-comparison">
+                    <div class="datatable">
+                       <table>
+                           <thead>
+                               <tr>
+                                   <th class="equal-width">Mare</th>
+                                   <th class="equal-width">Sire</th>
+                                   <th class="equal-width">Dam</th>
+                                   <th class="equal-width">YOB</th>
+                                   <th class="equal-width">Prize Money</th>
+                                   <th></th>
+                                 </tr>
+                           </thead>
+                           <tbody>
+                            {{#ifEq this.matchedMares.length 0}}
+                                <tr>
+                                    <td colspan="6" style="background-color: #ffffff;">
+                                        <div class="smp-no-data"><h6>No Data Found!</h6></div>
+                                    </td>
+                                </tr>
+                            {{else}}
+                                {{#each this.matchedMares}}
+                                <tr>
+                                    <td>{{this.mareName}}</td>
+                                    <td>{{this.sireName}}</td>
+                                    <td>{{this.damName}}</td>
+                                    <td>{{this.yob}}</td>
+                                    {{#if this.totalPrizeMoneyEarned}}
+                                        <td>{{this.currencySymbol}}{{this.totalPrizeMoneyEarned}}</td>
+                                    {{else}}
+                                        <td>-</td>
+                                    {{/if}}
+                                    <td></td>
+                                </tr>
+                                {{/each}}  
+                            {{/ifEq}}
+                           </tbody>
+                         </table>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <!-- End Matched Mares in Stallion Match -->
+
+
+
+         <!-- Progeny Tracker -->
+         <div class="matched-mare-wrapper mt-80">
+            <div class="common-header">
+             <h3>Progeny Tracker</h3>
+            </div>
+            <div class="matched-mare-body">
+                <div class="common-datatable stakes-comparison">
+                    <div class="datatable">
+                       <table>
+                           <thead>
+                               <tr>
+                                   <th class="equal-width">Mare</th>
+                                   <th class="equal-width">Dam</th>
+                                   <th class="equal-width">Age</th>
+                                   <th class="equal-width">Distance</th>
+                                   <th class="equal-width">Class</th>
+                                   <th class="equal-width">Location</th>
+                                 </tr>
+                           </thead>
+                           <tbody>
+                            {{#ifEq this.progenyTracker.length 0}}
+                                <tr>
+                                    <td colspan="6" style="background-color: #ffffff;">
+                                        <div class="smp-no-data"><h6>No Progeny Found!</h6></div>
+                                    </td>
+                                </tr>
+                            {{else}}
+                                {{#each this.progenyTracker}}
+                                <tr>
+                                    <td>{{this.horseName}}</td>
+                                    <td>{{this.damName}}</td>
+                                    <td>{{this.age}}</td>
+                                    <td>{{this.distance}} {{this.distanceCode}}</td>
+                                    <td>{{this.class}}</td>
+                                    <td>{{this.location}}</td>
+                                    </tr>
+                                {{/each}}
+                            {{/ifEq}}
+                           </tbody>
+                         </table>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <!-- End Progeny Tracker -->
+
+        </div>
+    </div>
+    
+</body>
+<script>
+    //alert(this.matchedMares)
+    var ctx = document.getElementById("myChart");
+    var progressBarEle = document.getElementById("linearprogress-root");
+  var SM_SEARCHES_DATA, TT_MATCHES_DATA, PERFECT_MATCHES_DATA, LABLES_OF_LINE_CHART, PROGRESS_BAR;
+  progressBarEle.innerHTML=`<span class="linearprogress-bar"  style="width:`+PROGRESS_BAR+`%;" ></span>`;
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        grid: {
+          display: false,
+        },
+      },
+    },
+    plugins: {
+    //   legend: {
+    //     position: 'top',
+    //     display: false,
+    //  },
+    //   title: {
+    //     display: false,
+    //     // text: 'Stallion Report',
+    //   },
+    }
+  };
+  Chart.defaults.global.legend.display = false;
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: LABLES_OF_LINE_CHART,
+  datasets: [{
+    label: 'SM Searches',
+    data: SM_SEARCHES_DATA,
+    borderColor: '#3139DA',
+    backgroundColor: '#3139DA',
+    fill:false,
+    tension: 0
+  },
+  {
+    label: '20/20 Matches',
+    data: TT_MATCHES_DATA,
+    borderColor: '#1D472E',
+    backgroundColor: '#1D472E',
+    fill:false,
+    tension: 0
+  },
+  {
+    label: 'Perfect Matches',
+    data: PERFECT_MATCHES_DATA,
+    borderColor: '#2EFFB4',
+    backgroundColor: '#2EFFB4',
+    fill:false,
+    tension: 0
+  }] 
+    },
+  /*  options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }*/
+    options:{
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+        xAxes : [ {
+            gridLines : {
+                display : false
+            }
+        } ],
+    //   x: {
+    //     grid: {
+    //       display: false,
+    //     },
+    //   },
+    },
+    plugins: {
+        legend: {
+            // position: 'top',
+            display: true,
+        },
+        title: false
+    }
+  }
+});
+
+</script>
+</html>
